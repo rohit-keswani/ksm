@@ -383,6 +383,14 @@
         };
 
     })
+    .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
+
+      $scope.SelfDevEntry = function() {
+        
+      };
+
+
+    }])
 
 
     //#################################################### DIRECTIVES
@@ -508,6 +516,14 @@
         checkAcademicData: function(){
           return $http.post('/ksm/data/proctor/checkAcademicData.php');
         }
+      }
+    }])
+    .factory('SelfDevData',['$http',function($http){
+      return {
+        SelfDevEntry: function(scope,data){
+
+        }
+
       }
     }])
     .factory('unitTestData',['$http',function($http){

@@ -1,0 +1,20 @@
+Add remote :
+  Origin : (Your forked Repo)
+          adding origin URL : git remote add origin <url>
+          removing origin : git remote remove origin
+
+  Upstream : (URL of Forked repo)
+          adding upstream URL : git remote add upstream <url>
+          remove upstream URL : git remote remove upstream
+
+  Commit Changes :
+
+          git commit -m "<message>"
+
+  Check Status of files to be committed:
+
+          git status
+
+  Add files to be committed:
+
+          git add .   #the dot denotes that you are adding all the files
