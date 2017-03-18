@@ -7,9 +7,6 @@ Add remote :
           adding upstream URL : git remote add upstream <url>
           remove upstream URL : git remote remove upstream
 
-  Commit Changes :
-
-          git commit -m "<message>"
 
   Check Status of files to be committed:
 
@@ -19,5 +16,9 @@ Add remote :
 
           git add .   #the dot denotes that you are adding all the files
 
-git pull origin branch - to fetch to system from repo 
+  Commit Changes :
+
+                  git commit -m "<message>"
+
+git pull origin branch - to fetch to system from repo
 git push origin branch - to push from system to github in my repo without changing master repo
