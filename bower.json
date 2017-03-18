@@ -1,0 +1,28 @@
+{
+  "name": "KSM-Project-Phase1",
+  "description": "Kshitij Malhara's Project Phase 1",
+  "main": "index.html",
+  "authors": [
+    "Rohan Purekar & Kshitij Malhara"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Phase1"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular": "^1.5.8",
+    "material-design-icons": "^3.0.1"
+  },
+  "devDependencies": {
+    "angular-ui-router": "^0.4.2"
+  }
+}
