@@ -502,6 +502,96 @@
               </md-card-content>
             </md-card>
           </md-tab>
+
+          <!-- ######################### TAB - Self-Development ####################### -->
+
+          <md-tab label="Self-Development">
+          <md-card>
+              <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Self-Development</span>
+                  </md-card-title-text>
+              </md-card-title>
+              <md-card-content ng-controller="SelfDevCtrl">
+                <div layout="column">
+                  <form ng-submit="SelfDevEntry(SelfDevData)" name="SelfDevForm" novalidate>
+                    <md-subheader class="md-primary">1. Communication Skill Development</md-subheader>
+                    <div layout="row">
+                      <md-input-container flex>
+                            <label>Name</label>
+                            <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                          <md-input-container flex>
+                              <label>Duration</label>
+                              <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                        </div>
+                          <div layout="row">
+                            <md-input-container flex>
+                            <label>Details</label>
+                              <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                            </md-input-container>
+                          </div>
+
+
+                  <md-subheader class="md-primary">2. Aptitude Training</md-subheader>
+                          <div layout="row">
+                            <md-input-container flex>
+                                  <label>Name</label>
+                                  <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                              </md-input-container>
+                                <md-input-container flex>
+                                    <label>Duration</label>
+                                    <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                                </md-input-container>
+                              </div>
+                                <div layout="row">
+                                  <md-input-container flex>
+                                  <label>Details</label>
+                                    <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                                  </md-input-container>
+                                </div>
+
+                  <md-subheader class="md-primary">3. Technical Skill Development</md-subheader>
+                                <div layout="row">
+                                  <md-input-container flex>
+                                        <label>Name</label>
+                                        <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                      <md-input-container flex>
+                                          <label>Duration</label>
+                                          <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                                      </md-input-container>
+                                    </div>
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                        <label>Details</label>
+                                          <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                    <md-subheader class="md-primary">4. Communication Skill Development</md-subheader>
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                              <label>Name</label>
+                                              <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Duration</label>
+                                                <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                            <div layout="row">
+                                              <md-input-container flex>
+                                              <label>Details</label>
+                                                <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                                              </md-input-container>
+                                            </div>
+
+                  </form>
+                </div>
+              </md-card-content>
+            </md-card>
+          </md-tab>
           <!-- ######################### TAB 4 ####################### -->
 
           <md-tab label="Research And Innovation">
