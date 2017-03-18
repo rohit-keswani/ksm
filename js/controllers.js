@@ -386,7 +386,7 @@
     .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
 
       $scope.SelfDevEntry = function() {
-        
+
       };
 
 

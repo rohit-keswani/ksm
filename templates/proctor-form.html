@@ -507,85 +507,342 @@
 
           <md-tab label="Self-Development">
           <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Self-Development</span>
-                  </md-card-title-text>
-              </md-card-title>
-              <md-card-content ng-controller="SelfDevCtrl">
+
+            <md-card-content ng-controller="SelfDevCtrl">
                 <div layout="column">
+                  <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-title">1. Communication Skill Development</span>
+                      </md-card-title-text>
+                  </md-card-title>
                   <form ng-submit="SelfDevEntry(SelfDevData)" name="SelfDevForm" novalidate>
-                    <md-subheader class="md-primary">1. Communication Skill Development</md-subheader>
+                    <br>
+                    <div layout="row">
+                      <div flex="5"></div>
+                      <div flex="80">
+                    <md-radio-group ng-model="SelfDevData.choice1">
+                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                  </md-radio-group>
+                </div>
+                <div flex="10"></div>
+              </div>
+
+
+                    <div layout="column" ng-show="SelfDevData.choice1 == 1">
                     <div layout="row">
                       <md-input-container flex>
                             <label>Name</label>
-                            <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="SelfDevData.name1" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                           <md-input-container flex>
                               <label>Duration</label>
-                              <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.duration1" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
-                        </div>
-                          <div layout="row">
+                    </div>
+                    <div layout="row">
                             <md-input-container flex>
                             <label>Details</label>
-                              <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.details1" type="text" autocomplete="off" ng-required="true">
                             </md-input-container>
-                          </div>
+                    </div>
+                  </div>
+
+                  <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-title">2. Aptitude Training</span>
+                      </md-card-title-text>
+                  </md-card-title>
+                  <br>
+                  <div layout="row">
+                    <div flex="5"></div>
+                    <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice2">
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice2 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name2" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration2" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details2" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">3.Technical Skill Development</span>
+                    </md-card-title-text>
+                </md-card-title>
+                  <br>
+                  <div layout="row">
+                    <div flex="5"></div>
+                    <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice3" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice3 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name3" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration3" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details3" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">4. Preparation for Higher Study</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice4" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice4 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name4" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration4" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details4" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
 
 
-                  <md-subheader class="md-primary">2. Aptitude Training</md-subheader>
-                          <div layout="row">
-                            <md-input-container flex>
-                                  <label>Name</label>
-                                  <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                                <md-input-container flex>
-                                    <label>Duration</label>
-                                    <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                </md-input-container>
-                              </div>
-                                <div layout="row">
-                                  <md-input-container flex>
-                                  <label>Details</label>
-                                    <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                  </md-input-container>
-                                </div>
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">5. Entrepreneurship Development Program</span>
+                    </md-card-title-text>
+                </md-card-title>
 
-                  <md-subheader class="md-primary">3. Technical Skill Development</md-subheader>
-                                <div layout="row">
-                                  <md-input-container flex>
-                                        <label>Name</label>
-                                        <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                                    </md-input-container>
-                                      <md-input-container flex>
-                                          <label>Duration</label>
-                                          <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                      </md-input-container>
-                                    </div>
-                                      <div layout="row">
-                                        <md-input-container flex>
-                                        <label>Details</label>
-                                          <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                        </md-input-container>
-                                      </div>
-                    <md-subheader class="md-primary">4. Communication Skill Development</md-subheader>
-                                      <div layout="row">
-                                        <md-input-container flex>
-                                              <label>Name</label>
-                                              <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                                          </md-input-container>
-                                            <md-input-container flex>
-                                                <label>Duration</label>
-                                                <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                            </md-input-container>
-                                          </div>
-                                            <div layout="row">
-                                              <md-input-container flex>
-                                              <label>Details</label>
-                                                <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                              </md-input-container>
-                                            </div>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice5" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice5 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name5" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration5" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details5" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">6. Language Training</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice6" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice6 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name6" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration6" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details6" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">7.Finishing School</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice7" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice7 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name7" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration7" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details7" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">8.Spiritual and Holistic Development Program</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                    <md-radio-group ng-model="SelfDevData.choice8" >
+                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                    </md-radio-group>
+
+                  </div>
+                  <div flex="10"></div>
+                </div>
+
+
+                  <div layout="column" ng-show="SelfDevData.choice8 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name8" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration8" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details8" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-title">9. Internship or Summer Training </span>
+                    </md-card-title-text>
+                </md-card-title>
+                <br>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <div flex="80">
+                  <md-radio-group ng-model="SelfDevData.choice9" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+              </div>
+              <div flex="10"></div>
+            </div>
+
+                  <div layout="column" ng-show="SelfDevData.choice9 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name9" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration9" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details9" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+                <div layout="row">
+                  <md-button type="submit">SUBMIT</md-button>
+                </div>
 
                   </form>
                 </div>
@@ -595,7 +852,6 @@
           <!-- ######################### TAB 4 ####################### -->
 
           <md-tab label="Research And Innovation">
-<<<<<<< HEAD
             <md-tabs>
               <md-tab label = "Project/Model-Making/Poster-Develpoment Competition">
               <!-- ######################### card 1 ####################### -->
@@ -605,7 +861,7 @@
                       <span class="md-headline">Major Project(Apart from University Exam)</span>
                   <md-card-title-text>
               </md-card-title>
-              
+
               </md-card-content>
           </md-card>
 
@@ -797,14 +1053,14 @@
                   </div>
                 </md-content>
                 </md-card-content>
-                </md-card>             
+                </md-card>
              </md-tab>
               <md-tab label = "Patent/IPR/Revenue Generation">
-                
+
               </md-tab>
               <md-tab label = "Research Publication">
-                
-=======
+
+
             <br>
             <br>
             <br>
@@ -819,7 +1075,6 @@
               </md-tab>
               <md-tab label = "Research Publication">
 
->>>>>>> ccbb5d4d6a4c31e510ec045c137ec21635496af8
               </md-tab>
 
             </md-tabs>
