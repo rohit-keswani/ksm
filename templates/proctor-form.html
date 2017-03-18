@@ -508,71 +508,17 @@
             <md-tabs>
               <md-tab label = "Project/Model-Making/Poster-Develpoment Competition">
               <!-- ######################### card 1 ####################### -->
-                 <md-card>
+            <md-card>
               <md-card-title>
                   <md-card-title-text>
                       <span class="md-headline">Major Project(Apart from University Exam)</span>
                   <md-card-title-text>
               </md-card-title>
-              <md-card-content>
-                <md-content class="md-padding" ng-controller="unitTestDataCtrl">
-                  <div layout="column">
-                    <form ng-submit="checkUserEntry(userData)" name="unitTestForm" novalidate>
-                      <div layout="row">
-                        <md-input-container flex>
-                          <label>Class</label>
-                          <md-select ng-model="userData.class">
-                            <md-option ng-value="class.value" ng-repeat="class in classes" ng-required="true">{{class.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                        <md-input-container flex>
-                          <label>Semester</label>
-                          <md-select ng-model="userData.sem">
-                            <md-option ng-value="sem.value" ng-repeat="sem in semester" ng-required="true">{{sem.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                        <md-input-container flex>
-                          <label>Unit Test</label>
-                          <md-select ng-model="userData.ut">
-                            <md-option ng-value="ut.value" ng-repeat="ut in unitTests" ng-required="true">{{ut.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                      </div>
-                      <md-button type="submit" class="md-primary">Submit</md-button>
-                    </form>
-
-                  </div>
-                  <div layout="column" ng-show="serverRespTrue">
-                      <form ng-submit="saveUnitTestData(unitTestData)" novalidate>
-                          <div layout="row">
-                              <md-input-container flex>
-                                <label>Total Subjects</label>
-                                <input type="number" ng-model="unitTestData.subjects" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                              <md-input-container flex>
-                                <label>Appeared</label>
-                                <input type="number" ng-model="unitTestData.appeared" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                              <md-input-container flex>
-                                <label>Passed</label>
-                                <input type="number" ng-model="unitTestData.passed" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                              <md-input-container flex>
-                                <label>Failed</label>
-                                <input type="number" ng-model="unitTestData.failed" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                          </div>
-                          <md-button type="submit" class="md-primary">Submit</md-button>
-                      </form>
-                  </div>
-                  <div layout="column" ng-show="serverRespFalse">
-                      <h3 style="color:#F44336;"> You have already entered data for this test.</h3>
-                  </div>
-                </md-content>
+              
               </md-card-content>
           </md-card>
 
-          <!-- ######################### CARD 3 ######################## -->
+          <!-- ######################### CARD 2 ######################## -->
           <md-card>
               <md-card-title>
                   <md-card-title-text>
@@ -628,7 +574,7 @@
                 </md-content>
               </md-card-content>
           </md-card>
-          <!-- ############################ CARD 4 ############################ -->
+          <!-- ############################ CARD 3 ############################ -->
           <md-card>
               <md-card-title>
                   <md-card-title-text>
@@ -760,7 +706,8 @@
                   </div>
                 </md-content>
                 </md-card-content>
-            </md-card>              </md-tab>
+                </md-card>             
+             </md-tab>
               <md-tab label = "Patent/IPR/Revenue Generation">
                 
               </md-tab>
