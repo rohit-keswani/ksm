@@ -383,12 +383,16 @@
         };
 
     })
+<<<<<<< HEAD
     .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
 
       $scope.SelfDevEntry = function() {
 
       };
 
+=======
+    .controller('SelfDevCtrl',['$scope',function($scope){
+>>>>>>> 29079b7feef880bbd0a8dfa795af60ba3fec25b3
 
     }])
 
@@ -518,14 +522,14 @@
         }
       }
     }])
-    .factory('SelfDevData',['$http',function($http){
-      return {
-        SelfDevEntry: function(scope,data){
-
-        }
-
-      }
-    }])
+    // .factory('SelfDevData',['$http',function($http){
+    //   return {
+    //     SelfDevEntry: function(scope,data){
+    //
+    //     }
+    //
+    //   }
+    // }])
     .factory('unitTestData',['$http',function($http){
       return {
         checkEntryUnitTest: function($scope,data){
