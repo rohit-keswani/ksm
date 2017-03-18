@@ -18,3 +18,6 @@ Add remote :
   Add files to be committed:
 
           git add .   #the dot denotes that you are adding all the files
+
+git pull origin branch - to fetch to system from repo 
+git push origin branch - to push from system to github in my repo without changing master repo
