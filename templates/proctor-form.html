@@ -1,5 +1,5 @@
 <div layout="column" layout-gt-md="row">
-  <div flex="20"></div>
+  <div flex="20" style="max-width: 20%;"></div>
   <div flex="60">
     <br>
     <br>
@@ -14,154 +14,163 @@
         <md-tabs md-dynamic-height md-border-bottom>
           <!-- ######################### TAB 1 ####################### -->
           <md-tab label="Basic Details">
-            <md-content class="md-padding">
-              <div layout="column">
-                <form ng-submit="saveProctor(user)" name="form1" novalidate>
+            <md-card>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Basic Details</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                <md-content class="md-padding">
+                  <div layout="column">
+                    <form ng-submit="saveProctor(user)" name="form1" novalidate>
 
-              <!-- fname : {{form1.firstname.$pristine}}
-              fname : {{form1.firstname.$untouched}} -->
-                <!-- <md-subheader class="md-primary">Unread Messages</md-subheader> -->
-                <div layout="row">
+                  <!-- fname : {{form1.firstname.$pristine}}
+                  fname : {{form1.firstname.$untouched}} -->
+                    <!-- <md-subheader class="md-primary">Unread Messages</md-subheader> -->
+                    <div layout="row">
 
-                  <md-input-container flex>
-                       <label>First Name</label>
-                       <input ng-model="user.firstname" name="firstname" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
+                      <md-input-container flex>
+                           <label>First Name</label>
+                           <input ng-model="user.firstname" name="firstname" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
 
-                  <md-input-container flex>
-                       <label>Last Name</label>
-                       <input ng-model="user.lastname" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Student ID</label>
-                       <input ng-model="user.studentID" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container class="md-block" flex-gt-sm>
-                          <label>Branch</label>
-                          <md-select ng-model="user.branch">
-                          <md-option ng-value="branch.value" ng-repeat="branch in branchList" ng-required="true">{{branch.name}}</md-option>
-                          </md-select>
-                  </md-input-container>
-                  <md-input-container class="md-block" flex-gt-sm>
-                          <label>Shift</label>
-                          <md-select ng-model="user.shift">
-                          <md-option ng-value="shift.value" ng-repeat="shift in shiftList" ng-required="true">{{shift.time}}</md-option>
-                          </md-select>
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-block" flex-gt-sm>
-                          <label>Year of Admission</label>
-                          <md-select ng-model="user.yoa">
-                          <md-option ng-value="yoa.value" ng-repeat="yoa in yoaList" ng-required="true">{{yoa.year}}</md-option>
-                          </md-select>
-                  </md-input-container>
-                  <md-datepicker ng-model="user.myDate" md-placeholder="Date of Birth" style="margin-top: 15px;" class="md-block" flex-gt-sm></md-datepicker>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Email</label>
-                       <input ng-model="user.email" type="email" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Phone Number(M)</label>
-                       <input ng-required="true" type="number"  ng-model="user.phone"  />
-                       <!-- min="1111111111"
-                         max="9999999999" ng-pattern="/^1234567890$/"step="any" name="rate" -->
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-block" flex-gt-sm>
-                        <label>Local Address </label>
-                        <input type="text" ng-model="user.Laddress" ng-required="true" autocomplete="off">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-block" flex-gt-sm>
-                        <label>Permanent Address </label>
-                        <input type="text" ng-model="user.Paddress" ng-required="true" autocomplete="off">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Father's Name</label>
-                       <input ng-model="user.fathername" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Father's Occupation</label>
-                       <input ng-model="user.foccupation" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Contact(Email / Phone )</label>
-                       <input ng-model="user.fcontact" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Mother's Name</label>
-                       <input ng-model="user.mothername" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Mother's Occupation</label>
-                       <input ng-model="user.moccupation" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Contact(Email / Phone )</label>
-                       <input ng-model="user.mcontact" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Local Guardian</label>
-                       <input ng-model="user.guardianname" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Contact(Phone)</label>
-                       <input ng-model="user.gcontact" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                       <label>Family Doctor's Name</label>
-                       <input ng-model="user.docname" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                  <md-input-container flex>
-                       <label>Contact (Phone)</label>
-                       <input ng-model="user.docContact" type="text" autocomplete="off" ng-required="true">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                      <label>Medical History</label>
-                      <input ng-model="user.medicalHistory" type="text" autocomplete="off" ng-required="true" placeholder="If any such as Major diseases, Undergone treatment for, Operated for, Allergies etc."
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container flex>
-                      <label>Personality Traits</label>
-                      <input ng-model="user.Personality" type="text" autocomplete="off" ng-required="true" placeholder="Likes, Dislikes, Talents & skills, Strengths, Weaknesses, Extrovert/Introvert/Tea, Player/Team Leader etc.">
-                  </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container flex>
-                      <label>Interests & Hobbies </label>
-                      <input ng-model="user.interests" type="text" autocomplete="off" ng-required="true">
-                    </md-input-container>
-                    <md-input-container flex>
-                      <label>Achievement / Award </label>
-                      <input ng-model="user.awards" type="text" autocomplete="off" ng-required="true">
-                    </md-input-container>
-                    <md-input-container flex>
-                      <label>Role Model/ Inspiration </label>
-                      <input ng-model="user.roleModel" type="text" autocomplete="off" ng-required="true">
-                    </md-input-container>
-                </div>
-                <md-button type="submit" class="md-primary">Submit</md-button>
-              </form>
-              </div>
-            </md-content>
+                      <md-input-container flex>
+                           <label>Last Name</label>
+                           <input ng-model="user.lastname" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Student ID</label>
+                           <input ng-model="user.studentID" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                              <label>Branch</label>
+                              <md-select ng-model="user.branch">
+                              <md-option ng-value="branch.value" ng-repeat="branch in branchList" ng-required="true">{{branch.name}}</md-option>
+                              </md-select>
+                      </md-input-container>
+                      <md-input-container class="md-block" flex-gt-sm>
+                              <label>Shift</label>
+                              <md-select ng-model="user.shift">
+                              <md-option ng-value="shift.value" ng-repeat="shift in shiftList" ng-required="true">{{shift.time}}</md-option>
+                              </md-select>
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container class="md-block" flex-gt-sm>
+                              <label>Year of Admission</label>
+                              <md-select ng-model="user.yoa">
+                              <md-option ng-value="yoa.value" ng-repeat="yoa in yoaList" ng-required="true">{{yoa.year}}</md-option>
+                              </md-select>
+                      </md-input-container>
+                      <md-datepicker ng-model="user.myDate" md-placeholder="Date of Birth" style="margin-top: 15px;" class="md-block" flex-gt-sm></md-datepicker>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Email</label>
+                           <input ng-model="user.email" type="email" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Phone Number(M)</label>
+                           <input ng-required="true" type="number"  ng-model="user.phone"  />
+                           <!-- min="1111111111"
+                             max="9999999999" ng-pattern="/^1234567890$/"step="any" name="rate" -->
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container class="md-block" flex-gt-sm>
+                            <label>Local Address </label>
+                            <input type="text" ng-model="user.Laddress" ng-required="true" autocomplete="off">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container class="md-block" flex-gt-sm>
+                            <label>Permanent Address </label>
+                            <input type="text" ng-model="user.Paddress" ng-required="true" autocomplete="off">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Father's Name</label>
+                           <input ng-model="user.fathername" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Father's Occupation</label>
+                           <input ng-model="user.foccupation" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Contact(Email / Phone )</label>
+                           <input ng-model="user.fcontact" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Mother's Name</label>
+                           <input ng-model="user.mothername" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Mother's Occupation</label>
+                           <input ng-model="user.moccupation" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Contact(Email / Phone )</label>
+                           <input ng-model="user.mcontact" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Local Guardian</label>
+                           <input ng-model="user.guardianname" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Contact(Phone)</label>
+                           <input ng-model="user.gcontact" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                           <label>Family Doctor's Name</label>
+                           <input ng-model="user.docname" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                      <md-input-container flex>
+                           <label>Contact (Phone)</label>
+                           <input ng-model="user.docContact" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                          <label>Medical History</label>
+                          <input ng-model="user.medicalHistory" type="text" autocomplete="off" ng-required="true" placeholder="If any such as Major diseases, Undergone treatment for, Operated for, Allergies etc."
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                      <md-input-container flex>
+                          <label>Personality Traits</label>
+                          <input ng-model="user.Personality" type="text" autocomplete="off" ng-required="true" placeholder="Likes, Dislikes, Talents & skills, Strengths, Weaknesses, Extrovert/Introvert/Tea, Player/Team Leader etc.">
+                      </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                          <label>Interests & Hobbies </label>
+                          <input ng-model="user.interests" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Achievement / Award </label>
+                          <input ng-model="user.awards" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Role Model/ Inspiration </label>
+                          <input ng-model="user.roleModel" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                    </div>
+                    <md-button type="submit" class="md-primary">Submit</md-button>
+                  </form>
+                  </div>
+                </md-content>
+              </md-card-content>
+            </md-card>
           </md-tab>
 
           <!-- ######################### TAB 2 ####################### -->
@@ -507,85 +516,190 @@
 
           <md-tab label="Self-Development">
           <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Self-Development</span>
-                  </md-card-title-text>
-              </md-card-title>
-              <md-card-content ng-controller="SelfDevCtrl">
+
+            <md-card-content ng-controller="SelfDevCtrl">
                 <div layout="column">
+                  <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">1. Communication Skill Development</span>
+                      </md-card-title-text>
+                  </md-card-title>
                   <form ng-submit="SelfDevEntry(SelfDevData)" name="SelfDevForm" novalidate>
-                    <md-subheader class="md-primary">1. Communication Skill Development</md-subheader>
+
+                    <md-radio-group ng-model="SelfDevData.choice1" >
+                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                  </md-radio-group>
+
+                    <div layout="column" ng-show="SelfDevData.choice1 == 1">
                     <div layout="row">
                       <md-input-container flex>
                             <label>Name</label>
-                            <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="SelfDevData.name1" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                           <md-input-container flex>
                               <label>Duration</label>
-                              <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.duration1" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
-                        </div>
-                          <div layout="row">
+                    </div>
+                    <div layout="row">
                             <md-input-container flex>
                             <label>Details</label>
-                              <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.details1" type="text" autocomplete="off" ng-required="true">
                             </md-input-container>
-                          </div>
+                    </div>
+                  </div>
+
+                  <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">2. Aptitude Training</span>
+                      </md-card-title-text>
+                  </md-card-title>
+
+                  <md-radio-group ng-model="SelfDevData.choice2">
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+
+                  <div layout="column" ng-show="SelfDevData.choice2 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name2" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration2" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details2" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">3.Technical Skill Development</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                  <md-radio-group ng-model="SelfDevData.choice3" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+
+                  <div layout="column" ng-show="SelfDevData.choice3 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name3" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration3" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details3" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">4. Preparation for Higher Study</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                  <md-radio-group ng-model="SelfDevData.choice4" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+
+                  <div layout="column" ng-show="SelfDevData.choice4 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name4" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration4" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details4" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
 
 
-                  <md-subheader class="md-primary">2. Aptitude Training</md-subheader>
-                          <div layout="row">
-                            <md-input-container flex>
-                                  <label>Name</label>
-                                  <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                                <md-input-container flex>
-                                    <label>Duration</label>
-                                    <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                </md-input-container>
-                              </div>
-                                <div layout="row">
-                                  <md-input-container flex>
-                                  <label>Details</label>
-                                    <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                  </md-input-container>
-                                </div>
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">5. Entrepreneurship Development Program</span>
+                    </md-card-title-text>
+                </md-card-title>
 
-                  <md-subheader class="md-primary">3. Technical Skill Development</md-subheader>
-                                <div layout="row">
-                                  <md-input-container flex>
-                                        <label>Name</label>
-                                        <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                                    </md-input-container>
-                                      <md-input-container flex>
-                                          <label>Duration</label>
-                                          <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                      </md-input-container>
-                                    </div>
-                                      <div layout="row">
-                                        <md-input-container flex>
-                                        <label>Details</label>
-                                          <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                        </md-input-container>
-                                      </div>
-                    <md-subheader class="md-primary">4. Communication Skill Development</md-subheader>
-                                      <div layout="row">
-                                        <md-input-container flex>
-                                              <label>Name</label>
-                                              <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
-                                          </md-input-container>
-                                            <md-input-container flex>
-                                                <label>Duration</label>
-                                                <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
-                                            </md-input-container>
-                                          </div>
-                                            <div layout="row">
-                                              <md-input-container flex>
-                                              <label>Details</label>
-                                                <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
-                                              </md-input-container>
-                                            </div>
+                  <md-radio-group ng-model="SelfDevData.choice5" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+
+                  <div layout="column" ng-show="SelfDevData.choice5 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name5" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration5" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details5" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
+                <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">6. Language Training</span>
+                    </md-card-title-text>
+                </md-card-title>
+
+                  <md-radio-group ng-model="SelfDevData.choice6" >
+                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                </md-radio-group>
+
+                  <div layout="column" ng-show="SelfDevData.choice6 == 1">
+                  <div layout="row">
+                    <md-input-container flex>
+                          <label>Name</label>
+                          <input ng-model="SelfDevData.name6" type="text" autocomplete="off" ng-required="true">
+                      </md-input-container>
+                        <md-input-container flex>
+                            <label>Duration</label>
+                            <input ng-model="SelfDevData.duration6" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                  </div>
+                  <div layout="row">
+                          <md-input-container flex>
+                          <label>Details</label>
+                            <input ng-model="SelfDevData.details6" type="text" autocomplete="off" ng-required="true">
+                          </md-input-container>
+                  </div>
+                </div>
+
 
                   </form>
                 </div>
@@ -595,6 +709,7 @@
           <!-- ######################### TAB 4 ####################### -->
 
           <md-tab label="Research And Innovation">
+<<<<<<< HEAD
             <md-tabs>
               <md-tab label = "Project/Model-Making/Poster-Develpoment Competition">
               <!-- ######################### card 1 ####################### -->
@@ -602,15 +717,9 @@
               <md-card-title>
                   <md-card-title-text>
                       <span class="md-headline">Major Project(Apart from University Exam)</span>
-                      <div flex-gt-sm="50">
-                          <label>Any Major Project ??? </label>
-                            <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-                        Checkbox 1: {{ data.cb1 }}
-                            </md-checkbox>
-        </div>
                   <md-card-title-text>
               </md-card-title>
-              
+
               </md-card-content>
           </md-card>
 
@@ -802,13 +911,13 @@
                   </div>
                 </md-content>
                 </md-card-content>
-                </md-card>             
+                </md-card>
              </md-tab>
               <md-tab label = "Patent/IPR/Revenue Generation">
-                
+
               </md-tab>
               <md-tab label = "Research Publication">
-                
+
 =======
             <br>
             <br>
@@ -837,5 +946,5 @@
     <br>
     <br>
   </div>
-  <div flex="20"></div>
+  <div flex="20" style="max-width: 20%;"></div>
 </div>
