@@ -99,8 +99,14 @@
 
     }])
 
-    .controller('userHomeCtrl',['$scope',function($scope){
+    .controller('userHomeCtrl',['$scope','user',function($scope,user){
         $scope.message = "heelo";
+        user.fetchProctorBasic($scope);
+        user.fetchProctorRest($scope);
+        user.fetchCurrentClass($scope);
+        user.fetchPrevAcademic($scope);
+        user.fetchPhoto($scope);
+
     }])
     .controller('sformCtrl',['$scope',function($scope){
         $scope.message = "Hi this a test msg";
@@ -302,7 +308,8 @@
          $scope.choices.splice(item, 1);
          };
      }])
-     .controller('ExtraEffortsInfoCtrl', function($scope) {
+     .controller('ExtraEffortsInfoCtrl', function($scope,user) {
+       $scope.choices = [{}];
   $scope.classes = [
     { name: 'First Year', value: '1' },
     { name: 'Second Year', value: '2' },
@@ -330,7 +337,7 @@
         {name:'Seminar',value:'2'},
         {name:'Project',value:'3'},
         {name:'Paper Presentation',value:'4'},
-        {name:'Other',value:'5'}
+        {name:'Other',value:'8'}
       ];
 
       $scope.Extracurriculars = [
@@ -338,7 +345,7 @@
         {name:'Gathering',value:'2'},
         {name:'Art Circle',value:'3'},
         {name:'Technical Events',value:'4'},
-        {name:'Other',value:'5'}
+        {name:'Other',value:'8'}
       ];
 
 
@@ -348,7 +355,7 @@
         {name:'Softskills',value:'3'},
         {name:'Aptitiude',value:'4'},
         {name:'Stress Management Courses',value:'5'},
-        {name:'Other',value:'6'}
+        {name:'Other',value:'8'}
       ];
 
       $scope.Trainings = [
@@ -356,7 +363,7 @@
         {name:'Sabbatical',value:'2'},
         {name:'Project Work',value:'3'},
         {name:'Workshops',value:'4'},
-        {name:'Others',value:'5'}
+        {name:'Others',value:'8'}
       ];
 
       $scope.EntranceExams = [
@@ -365,29 +372,81 @@
         {name:'CAT',value:'3'},
         {name:'TOEFL',value:'4'},
         {name:'GMAT',value:'5'},
-        {name:'Others',value:'6'}
+        {name:'Others',value:'8'}
       ]
 
-
-
-      $scope.choices = [];
-      $scope.saveForm = function(){
-        console.log("hello");
+      $scope.saveForm = function(data){
+        var $data = angular.toJson(data);
+        user.saveExtraEfforts($data).then(function(data){
+          console.log(data.data);
+        });
       }
+
       $scope.addNewChoice = function() {
         $scope.choices.push({});
       };
 
       $scope.removeChoice = function(item) {
-        $scope.choices.splice(item, 1);
+        var removeCHoice = $scope.choices.length-1;
+        $scope.choices.splice(removeCHoice);
         };
 
     })
+    .controller('currentClassCtrl',['$scope','user',function($scope,user){
+      $scope.classes = [
+            { name: 'F.E.', value: '1' },
+            { name: 'S.E.', value: '2' },
+              { name: 'T.E.', value: '3' },
+                { name: 'B.E.', value: '4' }
+          ];
+      $scope.semester = [
+            { name: 'I', value: '1' },
+            { name: 'II', value: '2' }
+
+          ];
+      $scope.divisions = [
+            { name: 'A / NO DIVISION', value: 'A' },
+            { name: 'B', value: 'B' },
+            { name: 'C', value: 'C' },
+            { name: 'D', value: 'D' },
+            { name: 'E', value: 'E' },
+            { name: 'F', value: 'F' },
+            { name: 'G', value: 'G' },
+            { name: 'H', value: 'H' }
+
+          ];
+
+        $scope.saveClass = function(data){
+          var $data = angular.toJson(data);
+          user.saveCurrentClass($data);
+        }
+    }])
     .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
 
       $scope.SelfDevEntry = function() {
 
       };
+    }])
+    .controller('uploadPhotoCtrl',['$scope','FileUploader',function($scope,FileUploader){
+      var uploader = $scope.uploader = new FileUploader({
+              url: '/ksm/data/upload/upload.php'
+          });
+
+          uploader.filters.push({
+              name: 'imageFilter',
+              fn: function(item /*{File|FileLikeObject}*/, options) {
+                  var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                  return '|jpg|png|jpeg|bmp|pdf|'.indexOf(type) !== -1;
+              }
+          });
+
+          uploader.onCompleteItem = function(fileItem, response, status, headers) {
+              console.log(response);
+          };
+
+              // uploader.onCompleteAll = function(response) {
+              //     console.info('onCompleteAll',response);
+              // };
     }])
 //=======
     .controller('SelfDevCtrl',['$scope',function($scope){
@@ -448,6 +507,7 @@
          },
          fetchProctorBasic : function(scope){
            $http.post('/ksm/data/users/fetchProctorBasic.php').then(function(data){
+
              scope.user = data.data[0];
              if(data.data[0].date == "0000-00-00"){
    						scope.user.myDate = "";
@@ -482,6 +542,47 @@
               scope.user.interests = data.data[0].interest_hobbies;
               scope.user.awards = data.data[0].awards;
               scope.user.roleModel = data.data[0].inspiration;
+           })
+         },
+         saveCurrentClass: function(data){
+           $http.post('/ksm/data/proctor/saveCurrentClass.php',data).then(function(data){
+             console.log(data.data);
+           })
+         },
+         fetchCurrentClass: function(scope){
+           $http.post('/ksm/data/users/fetchCurrentClass.php').then(function(data){
+             scope.user.class = data.data.class;
+             scope.user.division = data.data.division;
+           });
+         },
+         saveExtraEfforts:function(data){
+           return $http.post('/ksm/data/proctor/saveExtraEfforts.php',data);
+         },
+         fetchPhoto: function(scope){
+           $http.post('/ksm/data/proctor/fetchPhoto.php').then(function(data){
+             scope.user.photo = data.data[0].photo;
+           });
+         },
+         saveCertificate: function(data){
+           $http.post('/ksm/data/upload/uploadCertificate.php',data).then(function(data){
+              console.log(data.data);
+           });
+         },
+         fetchPrevAcademic: function(scope){
+           $http.post('/ksm/data/users/fetchPrevAcademic.php').then(function(data){
+             scope.user.yop = data.data[0].yop;
+             scope.user.institute = data.data[0].institute;
+             scope.user.percentage = data.data[0].percentage;
+             scope.user.subjects = data.data[0].subjects;
+             scope.user.achievements = data.data[0].achievements;
+             scope.user.problems = data.data[0].problems;
+
+             scope.user.yop1 = data.data[1].yop;
+             scope.user.institute1 = data.data[1].institute;
+             scope.user.percentage1 = data.data[1].percentage;
+             scope.user.subjects1 = data.data[1].subjects;
+             scope.user.achievements1 = data.data[1].achievements;
+             scope.user.problems1 = data.data[1].problems;
            })
          }
 

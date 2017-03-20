@@ -46,43 +46,76 @@
 			// $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		public function login($data){
-			$email = $data->email;
-			$email = explode("@",$email);
-			$email_pre = $email[0];
-		  $email_suff = $email[1];
+			if (strpos($data->email,"@")) {
+				$email = $data->email;
+				$email = explode("@",$email);
+				$email_pre = $email[0];
+			  $email_suff = $email[1];
 
-			$this->pdo->exec("use ksm_plexus");
-			$stmt = $this->pdo->prepare("SELECT prim_id,f_name,l_name,account_type FROM PM010001 WHERE username_pre=:email_pre AND username_suff = :email_suff AND password = :password ");
-			$stmt->bindParam(":email_pre",$email_pre,PDO::PARAM_STR);
-			$stmt->bindParam(":email_suff",$email_suff,PDO::PARAM_STR);
-			$stmt->bindParam(":password",$data->password,PDO::PARAM_STR);
-			$stmt->execute();
-			$count = $stmt->rowCount();
-			$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				$this->pdo->exec("use ksm_plexus");
+				$stmt = $this->pdo->prepare("SELECT prim_id,student_id,f_name,l_name,account_type FROM PM010001 WHERE username_pre=:email_pre AND username_suff = :email_suff AND password = :password ");
+				$stmt->bindParam(":email_pre",$email_pre,PDO::PARAM_STR);
+				$stmt->bindParam(":email_suff",$email_suff,PDO::PARAM_STR);
+				$stmt->bindParam(":password",$data->password,PDO::PARAM_STR);
+				$stmt->execute();
+				$count = $stmt->rowCount();
+				$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-			if ($count == 1){
-				$_SESSION['status'] = 1;
-				$_SESSION['user_plexus_id'] = $user[0]['prim_id'];
-				$_SESSION['email']=$email_pre."@".$email_suff;
-				$_SESSION['f_name']=$user[0]['f_name'];
-				$_SESSION['l_name']=$user[0]['l_name'];
-				$_SESSION['account_type']=$user[0]['account_type'];
-				echo json_encode($user);
+				if ($count == 1){
+					$_SESSION['status'] = 1;
+					$_SESSION['studentId'] = $user[0]['student_id'];
+					$_SESSION['user_plexus_id'] = $user[0]['prim_id'];
+					$_SESSION['email']=$email_pre."@".$email_suff;
+					$_SESSION['f_name']=$user[0]['f_name'];
+					$_SESSION['l_name']=$user[0]['l_name'];
+					$_SESSION['account_type']=$user[0]['account_type'];
+					echo json_encode($user);
+				}
+				else {
+					echo "0";
+				}
 			}
+			else{
+				$student_id = $data->email;
+
+				$this->pdo->exec("use ksm_plexus");
+				$stmt = $this->pdo->prepare("SELECT prim_id,username_pre,username_suff,f_name,l_name,account_type FROM PM010001 WHERE student_id = :student_id AND password = :password ");
+				$stmt->bindParam(":student_id",$student_id,PDO::PARAM_STR);
+				$stmt->bindParam(":password",$data->password,PDO::PARAM_STR);
+				$stmt->execute();
+				$count = $stmt->rowCount();
+				$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+				if ($count == 1){
+					$_SESSION['status'] = 1;
+					$_SESSION['studentId'] = $student_id;
+					$_SESSION['user_plexus_id'] = $user[0]['prim_id'];
+					$_SESSION['email']=$user[0]['username_pre']."@".$user[0]['username_suff'];
+					$_SESSION['f_name']=$user[0]['f_name'];
+					$_SESSION['l_name']=$user[0]['l_name'];
+					$_SESSION['account_type']=$user[0]['account_type'];
+					echo json_encode($user);
+				}
+				else {
+					echo "0";
+				}
+			}
+
+
 
 		}
 		public function fetchProctorBasic(){
-			$_SESSION['student_id'] = "PCCOE0001";
-			$stmt = $this->pdo->prepare("SELECT * FROM PM010002 WHERE studentId = :student_id");
-      $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+
+			$stmt = $this->pdo->prepare("SELECT * FROM PM010002 WHERE studentID = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
       $stmt->execute();
     	$count = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $count;
 		}
 		public function fetchProctorRest(){
-			$_SESSION['student_id'] = "PCCOE0001";
-			$stmt = $this->pdo->prepare("SELECT sr_no FROM PM010002 WHERE studentId = :student_id");
-      $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+
+			$stmt = $this->pdo->prepare("SELECT sr_no FROM PM010002 WHERE studentID = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
       $stmt->execute();
       $count = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -93,6 +126,39 @@
 			return $count;
 
 
+		}
+		public function fetchCurrentClass(){
+			$active = 1;
+			$stmt = $this->pdo->prepare("SELECT class_id,division FROM PM010011 WHERE student_key_id = :student_id AND active = :active");
+			$stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+			$stmt->bindParam(":active",$active,PDO::PARAM_STR);
+			$stmt->execute();
+			$count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $count;
+		}
+
+		public function fetchPrevAcademic(){
+			$stmt = $this->pdo->prepare("SELECT * FROM PM010008 WHERE student_id = :student_id");
+			$stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
+			$stmt->execute();
+			$count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $count;
+		}
+
+		public function saveProfilePic($path,$id){
+			$stmt = $this->pdo->prepare("UPDATE PM010001 SET photo = :photo WHERE student_id = :student_id");
+			$stmt->bindParam(":student_id",$id,PDO::PARAM_STR);
+			$stmt->bindParam(":photo",$path,PDO::PARAM_STR);
+			$stmt->execute();
+
+		}
+
+		public function fetchPhoto(){
+			$stmt = $this->pdo->prepare("SELECT photo FROM PM010001 WHERE student_id = :student_id");
+			$stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
+			$stmt->execute();
+			$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $row;
 		}
 
 		public function proctorForm($data){

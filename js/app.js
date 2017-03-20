@@ -4,7 +4,8 @@ var app = null;
   app = angular.module('app',[
     'ui.router',
 		'ngAnimate',
-		'ngMaterial'
+		'ngMaterial',
+    'angularFileUpload'
   ])
   .config(config)
   .run(run);

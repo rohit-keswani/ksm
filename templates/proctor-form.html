@@ -172,6 +172,161 @@
                 </md-content>
               </md-card-content>
             </md-card>
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Past Performance</span>
+                  <!-- <span class="md-subhead">Scores of previous years</span> -->
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                <md-content class="md-padding" ng-controller="academicInfoCtrl">
+                  <div layout="column" ng-show="positiveServResp">
+                    <form ng-submit="submitAcademicInfo(academicData)" name="academicDataForm" novalidate>
+                      <md-subheader class="md-primary">SSC</md-subheader>
+                      <div layout="row">
+                        <md-input-container flex>
+                          <label>Year Of Passing</label>
+                          <input ng-model="academicData.yop" type="text" placeholder="dd-mm-yyyy" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>School Attended</label>
+                          <input ng-model="academicData.institute" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>% Marks</label>
+                          <input ng-model="academicData.percentage" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                      </div>
+                      <div layout="row">
+                        <md-input-container flex>
+                          <label>Subjects Studied / Of Interest</label>
+                          <input ng-model="academicData.subjects" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Achievements / Activities </label>
+                          <input ng-model="academicData.achievements" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Problems / Difficulties Faced</label>
+                          <input ng-model="academicData.problems" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                      </div>
+                      <md-subheader class="md-primary">HSC / Diploma</md-subheader>
+                      <div layout="row">
+                        <md-input-container flex>
+                          <label>Year Of Passing</label>
+                          <input ng-model="academicData.yop1" type="text" placeholder="dd-mm-yyyy" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>College Attended</label>
+                          <input ng-model="academicData.institute1" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>% Marks</label>
+                          <input ng-model="academicData.percentage1" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                      </div>
+                      <div layout="row">
+                        <md-input-container flex>
+                          <label>Subjects Studied / Of Interest</label>
+                          <input ng-model="academicData.subjects1" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Achievements / Activities </label>
+                          <input ng-model="academicData.achievements1" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container flex>
+                          <label>Problems / Difficulties Faced</label>
+                          <input ng-model="academicData.problems1" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container>
+                      </div>
+                      <md-button type="submit" class="md-primary">Submit</md-button>
+                    </form>
+                  </div>
+                  <div ng-show="negativeServResp">
+                    <h3 style="color:#F44336;"> You have already entered data for this section.</h3>
+                  </div>
+                  <div ng-show="thankYou">
+                    <h3 style="color:#F44336;"> Thank You your data has been submitted.</h3>
+                  </div>
+                </md-content>
+              </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Update Photo</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content ng-controller="uploadPhotoCtrl">
+                  <input type="file" nv-file-select="" uploader="uploader"/><br/>
+                  <div class="col-md-9" style="margin-bottom: 40px">
+
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th width="50%" class="md-subhead">Name</th>
+                                                  <th ng-show="uploader.isHTML5" class="md-subhead">Size</th>
+                                                  <!-- <th ng-show="uploader.isHTML5" class="md-subhead">Progress</th> -->
+                                                  <th class="md-subhead">Status</th>
+                                                  <th class="md-subhead">Actions</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr ng-repeat="item in uploader.queue">
+                                                  <td>
+                                                      <small>{{ item.file.name }}</small>
+                                                      <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+                                                  </td>
+                                                  <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                  <!-- <td ng-show="uploader.isHTML5">
+                                                      <div class="progress" style="margin-bottom: 0;">
+                                                          <md-progress-circular class="md-accent" md-mode="determinate" value="{{item.progress}}"></md-progress-circular>
+                                                      </div>
+                                                  </td> -->
+                                                  <td class="text-center">
+                                                      <span ng-show="item.isSuccess"><md-icon class="material-icons">done</md-icon></span>
+                                                      <span ng-show="item.isCancel"><md-icon class="material-icons">clear</md-icon></span>
+                                                      <span ng-show="item.isError"><md-icon class="material-icons">error</md-icon></span>
+                                                  </td>
+                                                  <td nowrap>
+                                                      <md-button  class="md-primary md-icon-button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                          <md-icon class="material-icons">file_upload</md-icon>
+                                                      </md-button>
+                                                      <md-button  class="md-primary md-icon-button"  ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                                          <md-icon class="material-icons">cancel</md-icon>
+                                                      </md-button>
+                                                      <md-button  class="md-warn md-icon-button" ng-click="item.remove()">
+                                                          <md-icon class="material-icons">delete</md-icon>
+                                                      </md-button>
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+
+                                      <div>
+                                          <div>
+                                              <md-progress-linear md-mode="determinate" value="{{uploader.progress}}"></md-progress-linear>
+                                              <div class="progress" style="">
+                                                  <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                              </div>
+                                          </div>
+                                          <!-- <md-button  class="md-primary" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                              <md-icon class="material-icons">file_upload</md-icon> Upload
+                                          </md-button>
+                                          <md-button  class="md-primary" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                                              <md-icon class="material-icons">cancel</md-icon> Cancel
+                                          </md-button>
+                                          <md-button  class="md-warn" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                              <md-icon class="material-icons">delete</md-icon> Remove
+                                          </md-button> -->
+                                      </div>
+
+                  </div>
+                </md-card-content>
+            </md-card>
           </md-tab>
 
           <!-- ######################### TAB 2 ####################### -->
@@ -180,87 +335,43 @@
 
           <md-tab label="Academic Information">
               <!-- ##################### CARD 1 ######################-->
-              <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-                <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Past Performance</span>
-                    <!-- <span class="md-subhead">Scores of previous years</span> -->
-                  </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                  <md-content class="md-padding" ng-controller="academicInfoCtrl">
-                    <div layout="column" ng-show="positiveServResp">
-                      <form ng-submit="submitAcademicInfo(academicData)" name="academicDataForm" novalidate>
-                        <md-subheader class="md-primary">SSC</md-subheader>
-                        <div layout="row">
-                          <md-input-container flex>
-                            <label>Year Of Passing</label>
-                            <input ng-model="academicData.yop" type="text" placeholder="dd-mm-yyyy" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>School Attended</label>
-                            <input ng-model="academicData.institute" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>% Marks</label>
-                            <input ng-model="academicData.percentage" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <div layout="row">
-                          <md-input-container flex>
-                            <label>Subjects Studied / Of Interest</label>
-                            <input ng-model="academicData.subjects" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Achievements / Activities </label>
-                            <input ng-model="academicData.achievements" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Problems / Difficulties Faced</label>
-                            <input ng-model="academicData.problems" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <md-subheader class="md-primary">HSC / Diploma</md-subheader>
-                        <div layout="row">
-                          <md-input-container flex>
-                            <label>Year Of Passing</label>
-                            <input ng-model="academicData.yop1" type="text" placeholder="dd-mm-yyyy" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>College Attended</label>
-                            <input ng-model="academicData.institute1" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>% Marks</label>
-                            <input ng-model="academicData.percentage1" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <div layout="row">
-                          <md-input-container flex>
-                            <label>Subjects Studied / Of Interest</label>
-                            <input ng-model="academicData.subjects1" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Achievements / Activities </label>
-                            <input ng-model="academicData.achievements1" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Problems / Difficulties Faced</label>
-                            <input ng-model="academicData.problems1" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <md-button type="submit" class="md-primary">Submit</md-button>
-                      </form>
-                    </div>
-                    <div ng-show="negativeServResp">
-                      <h3 style="color:#F44336;"> You have already entered data for this section.</h3>
-                    </div>
-                    <div ng-show="thankYou">
-                      <h3 style="color:#F44336;"> Thank You your data has been submitted.</h3>
-                    </div>
-                  </md-content>
-                </md-card-content>
-          </md-card>
+              <md-card>
+                  <md-card-title>
+                      <md-card-title-text>
+                          <span class="md-headline">Current Class</span>
+                      <md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
+                    <md-content class="md-padding" ng-controller="currentClassCtrl">
+                      <div layout="column">
+                        <form ng-submit="saveClass(userData)" name="unitTestForm" novalidate>
+                          <div layout="row">
+                            <md-input-container flex>
+                              <label>Class</label>
+                              <md-select ng-model="userData.class">
+                                <md-option ng-value="class.value" ng-repeat="class in classes" ng-required="true">{{class.name}}</md-option>
+                              </md-select>
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Semester</label>
+                              <md-select ng-model="userData.sem">
+                                <md-option ng-value="sem.value" ng-repeat="sem in semester" ng-required="true">{{sem.name}}</md-option>
+                              </md-select>
+                            </md-input-container>
+                            <md-input-container flex>
+                              <label>Current Division</label>
+                              <md-select ng-model="userData.div">
+                                <md-option ng-value="division.value" ng-repeat="division in divisions" ng-required="true">{{division.name}}</md-option>
+                              </md-select>
+                            </md-input-container>
+                          </div>
+                          <md-button type="submit" class="md-primary">Submit</md-button>
+                        </form>
+
+                      </div>
+                    </md-content>
+                  </md-card-content>
+              </md-card>
           <!-- ################################## CARD 2 ############################ -->
           <md-card>
               <md-card-title>
@@ -453,7 +564,7 @@
           </md-tab>
           <!-- ######################### TAB 3 ####################### -->
 
-          <md-tab label="PTG">
+          <!-- <md-tab label="PTG">
           <md-card>
               <md-card-title>
                   <md-card-title-text>
@@ -511,7 +622,7 @@
                 </div>
               </md-card-content>
             </md-card>
-          </md-tab>
+          </md-tab> -->
 
           <!-- ######################### TAB - Self-Development ####################### -->
 
@@ -859,6 +970,108 @@
               </md-card-content>
             </md-card>
           </md-tab>
+
+          <!-- ######################### TAB - Extra Efforts ####################### -->
+
+          <md-tab label="Extra Efforts">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Extra Efforts</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                  <md-content class="md-padding" ng-controller= "ExtraEffortsInfoCtrl">
+                             <div layout="column">
+                               <form name="ExtraEffortsForm" ng-submit="saveForm(choices)" novalidate>
+
+                                 <div  data-ng-repeat="choice in choices">
+
+                                  <div layout="row">
+
+                                   <md-input-container flex>
+                                     <label>Type of Activity</label>
+                                     <md-select ng-model="choice.activity">
+                                       <md-option ng-value="activity.value" ng-repeat="activity in activities" ng-required="true">{{activity.name}}</md-option>
+                                     </md-select>
+                                   </md-input-container>
+
+                                   <md-input-container ng-if="choice.activity == 1" flex>
+                                     <label>Select Activity</label>
+                                     <md-select ng-model="choice.type">
+                                       <md-option ng-value="Cocurricular.value" ng-repeat="Cocurricular in Cocurriculars" ng-required="true">{{Cocurricular.name}}</md-option>
+                                     </md-select>
+                                     <!--input ng-model="choice.name.Co-curricular" type="Text" autocomplete="off" ng-required="true"-->
+                                   </md-input-container>
+
+
+                                   <md-input-container ng-if="choice.activity == 2" flex>
+                                     <label>Select Activity</label>
+                                     <md-select ng-model="choice.type">
+                                       <md-option ng-value="Extracurricular.value" ng-repeat="Extracurricular in Extracurriculars" ng-required="true">{{Extracurricular.name}}</md-option>
+                                     </md-select>
+                                   </md-input-container>
+
+                                   <md-input-container ng-if="choice.activity == 3" flex>
+                                     <label>Select Activity</label>
+                                     <md-select ng-model="choice.type">
+                                       <md-option ng-value="Addon.value" ng-repeat="Addon in Addons" ng-required="true">{{Addon.name}}</md-option>
+                                     </md-select>
+                                   </md-input-container>
+
+                                   <md-input-container ng-if="choice.activity == 5" flex>
+                                     <label>Select Activity</label>
+                                     <md-select ng-model="choice.type">
+                                       <md-option ng-value="Training.value" ng-repeat="Training in Trainings" ng-required="true">{{Training.name}}</md-option>
+                                     </md-select>
+                                   </md-input-container>
+
+                                   <md-input-container ng-if="choice.activity == 6" flex>
+                                     <label>Select Activity</label>
+                                     <md-select ng-model="choice.type">
+                                       <md-option ng-value="EntranceExam.value" ng-repeat="EntranceExam in EntranceExams" ng-required="true">{{EntranceExam.name}}</md-option>
+                                     </md-select>
+                                   </md-input-container>
+
+                                   <md-input-container ng-if="choice.activity == 8 || choice.activity == 7 ||choice.type == 8 || choice.activity == 4" flex>
+                                     <label>Specify Details</label>
+                                     <input ng-model="choice.specs" type="Text" autocomplete="off" ng-required="true">
+                                   </md-input-container>
+                                  </div>
+                                  <div layout="row">
+
+                                  <div layout="row" flex>
+                                     <md-input-container flex>
+                                     <label>Details of the performance</label>
+                                     <input type="d" ng-model="choice.perform" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+
+                                  </div>
+                                </div>
+                                 <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                 <md-button class="remove" ng-click="removeChoice($index)">Remove</md-button>
+                                 <md-button type="submit">Save</md-button>
+
+                               </form>
+
+                               </div>
+                           </md-content>
+                </md-card-content>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Upload Certificates</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+
+                </md-card-content>
+            </md-card>
+
+
+          </md-tab>
           <!-- ######################### TAB 4 ####################### -->
 
           <md-tab label="Research And Innovation">
@@ -999,96 +1212,12 @@
             </md-card>
 
             <!-- ############################ CARD 4 ############################ -->
-          <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Technical Exhibition </span>
-                  </md-card-title-text>
-              </md-card-title>
-              <md-card-content>
-                <md-content class="md-padding" ng-controller= "univExamCtrl">
-                  <div layout="column">
-                    <form name="univExamForm" ng-submit="saveForm(choices)" novalidate>
-                        <div  data-ng-repeat="choice in choices">
-                          <div layout="row">
-                            <md-input-container flex>
-                              <label>Exam</label>
-                              <input ng-model="choice.name.exam" type="text" placeholder="FE / SE / TE / BE" autocomplete="off" ng-required="true">
-                            </md-input-container>
 
-                            <md-input-container flex>
-                              <label>Month and Year</label>
-                              <input ng-model="choice.name.mAndy" type="text" placeholder="mm-yyyy" autocomplete="off" ng-required="true">
-                            </md-input-container>
-                          </div>
-                          <div layout="row">
-                          <md-input-container flex>
-                            <label>Seat No.</label>
-                            <input ng-model="choice.name.seat" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Result</label>
-                            <md-select ng-model="choice.name.result">
-                              <md-option ng-value="result.value" ng-repeat="result in results" ng-required="true">{{result.name}}</md-option>
-                            </md-select>
-                          </md-input-container>
-                          <md-input-container ng-if="choice.name.result == 2" flex>
-                            <label>No. Of Subjects</label>
-                            <input ng-model="choice.name.failed" type="number" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <div layout="row">
-
-                          <md-input-container flex>
-                            <label>Reasons for Success/ Failure (As per student's opinion)</label>
-                            <input ng-model="choice.name.reason" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Suggestions given on performance/ remedial actions </label>
-                            <input ng-model="choice.name.suggestion" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-
-                        </div>
-                        <div layout="row">
-                              <md-input-container flex>
-                                <label>Aggregate % till this exam</label>
-                                <input ng-model="choice.name.agg" type="number" autocomplete="off" ng-required="true">
-                              </md-input-container>
-                        </div>
-                        </div>
-                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
-                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
-                        <md-button type="submit">Save</md-button>
-                    </form>
-                  </div>
-                </md-content>
-                </md-card-content>
-                </md-card>
-             </md-tab>
-              <md-tab label = "Patent/IPR/Revenue Generation">
-
-              </md-tab>
-              <md-tab label = "Research Publication">
+            <!-- ############################ CARD 4 ############################ -->
 
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <md-tabs>
-              <md-tab label = "Project/Model-Making
-                              /Poster-Develpoment Competition">
 
-              </md-tab>
-              <md-tab label = "Patent/IPR/Revenue Generation">
 
-              </md-tab>
-              <md-tab label = "Research Publication">
-
-              </md-tab>
-
-            </md-tabs>
-          </md-tab>
         </md-tabs>
       </md-content>
 
@@ -1099,4 +1228,3 @@
   </div>
   <div flex="20" style="max-width:20%;"></div>
 </div>
-=======

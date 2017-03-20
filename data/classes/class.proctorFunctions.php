@@ -106,18 +106,56 @@ class proctor {
       }
     }
 
+    public function saveExtraEfforts($data,$classID){
+    $arr = array();
+    foreach ($data as $key => $value) {
+        if ($data[$key]['type']==8 || $data[$key]['activity'] == 8 || $data[$key]['activity'] == 7 || $data[$key]['activity'] == 4) {
+          $type = "0";
+          $specs = $data[$key]['specs'];
+        }
+        else {
+          $type = $data[$key]['type'];
+          $specs = "0";
+        }
+        $stmt = $this->pdo->prepare("INSERT INTO PM010015 (student_id,class_id,type_of_activity,activity,specs,details_performance) VALUES (:student_id,:class_id,:type_of_activity,:activity,:specs,:details_performance)");
+        $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":class_id",$classID,PDO::PARAM_STR);
+        $stmt->bindParam(":type_of_activity",$data[$key]['activity'],PDO::PARAM_STR);
+        $stmt->bindParam(":activity",$type,PDO::PARAM_STR);
+        $stmt->bindParam(":specs",$specs,PDO::PARAM_STR);
+        $stmt->bindParam(":details_performance",$data[$key]['perform'],PDO::PARAM_STR);
+        $stmt->execute();
+      }
+      echo json_encode($arr);
+    }
+
+    public function saveCurrentClass($data,$classID){
+      $activate = 1;
+      $deactivate = 0;
+      $stmt = $this->pdo->prepare("UPDATE PM010011 SET active = :active WHERE student_key_id = :student_key_id");
+      $stmt->bindParam(":student_key_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":active",$deactivate,PDO::PARAM_STR);
+      $stmt->execute();
+
+      $stmt = $this->pdo->prepare("INSERT INTO PM010011 (student_key_id,class_id,division,active) VALUES (:student_key_id,:class_id,:division,:active)");
+      $stmt->bindParam(":student_key_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":class_id",$classID,PDO::PARAM_STR);
+      $stmt->bindParam(":division",$data->div,PDO::PARAM_STR);
+      $stmt->bindParam(":active",$activate,PDO::PARAM_STR);
+      $stmt->execute();
+      echo " ";
+    }
     public function storeAttendanceData($data){
       if ($_SESSION['fnight_count'] == 0) {
-        $_SESSION['student_id'] = "123123C2312";
         $stmt = $this->pdo->prepare("INSERT INTO PM010007 (student_id,class_id,".$_SESSION['fnight_column'].") VALUES (:student_id,:class,:f_no)");
-        $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
         $stmt->bindParam(":class",$_SESSION['classID'],PDO::PARAM_STR);
         $stmt->bindParam(":f_no",$data->attendance,PDO::PARAM_STR);
         $stmt->execute();
       }
       else {
         $stmt = $this->pdo->prepare("UPDATE PM010007 SET ".$_SESSION['fnight_column']." =:attendance WHERE student_id = :student_id AND class_id = :class");
-        $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
         $stmt->bindParam(":class",$_SESSION['classID'],PDO::PARAM_STR);
         $stmt->bindParam(":attendance",$data->attendance,PDO::PARAM_STR);
         $stmt->execute();
@@ -166,9 +204,9 @@ class proctor {
     }
 
     public function checkAcademicData(){
-      $_SESSION['student_id']="123123C2312";
+
       $stmt = $this->pdo->prepare("SELECT * FROM PM010008 WHERE student_id = :student_id");
-      $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
       $stmt->execute();
       $count = $stmt->rowCount();
       echo json_encode($count);
@@ -178,7 +216,7 @@ class proctor {
       $ssc = 1;
       $hsc = 2;
       $stmt = $this->pdo->prepare("INSERT INTO PM010008 (student_id,class,yop,institute,percentage,subjects,achievements,problems) VALUES (:student_id,:class,:yop,:institute,:percentage,:subjects,:achievements,:problems)");
-      $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
       $stmt->bindParam(":class",$ssc,PDO::PARAM_STR);
       $stmt->bindParam(":yop",$data->yop,PDO::PARAM_STR);
       $stmt->bindParam(":institute",$data->institute,PDO::PARAM_STR);
@@ -189,7 +227,7 @@ class proctor {
       $stmt->execute();
 
       $stmt = $this->pdo->prepare("INSERT INTO PM010008 (student_id,class,yop,institute,percentage,subjects,achievements,problems) VALUES (:student_id,:class,:yop,:institute,:percentage,:subjects,:achievements,:problems)");
-      $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
       $stmt->bindParam(":class",$hsc,PDO::PARAM_STR);
       $stmt->bindParam(":yop",$data->yop1,PDO::PARAM_STR);
       $stmt->bindParam(":institute",$data->institute1,PDO::PARAM_STR);
@@ -203,7 +241,7 @@ class proctor {
 
     }
     public function storeUnivData($data){
-      $_SESSION['student_id']="123123C2312";
+
       $count = sizeof($data);
 
       for ($i=0; $i < $count ; $i++) {
@@ -211,7 +249,7 @@ class proctor {
           $data[$i]->name->subjects = 0;
         }
         $stmt = $this->pdo->prepare("INSERT INTO PM010010 (student_id,exam,mAndy,seat_no,result,no_of_subjects,reason,suggestion,aggregate) VALUES (:student_id,:exam,:mAndy,:seat_no,:result,:no_of_subjects,:reason,:suggestion,:aggregate)");
-        $stmt->bindParam(":student_id",$_SESSION['student_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
         $stmt->bindParam(":exam",$data[$i]->name->exam,PDO::PARAM_STR);
         $stmt->bindParam(":mAndy",$data[$i]->name->mAndy,PDO::PARAM_STR);
         $stmt->bindParam(":seat_no",$data[$i]->name->seat,PDO::PARAM_STR);

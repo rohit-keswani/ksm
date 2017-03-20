@@ -9,7 +9,7 @@ module.exports = function(grunt){
 				banner: '/*! <%pkg.name%> -v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
 			},
 			dist: {
-				src: ['bower_components/angular/angular.js','bower_components/angular-animate/angular-animate.js','bower_components/angular-messages/angular-messages.js','bower_components/angular-aria/angular-aria.js','bower_components/angular-material/angular-material.js','bower_components/angular-ui-router/release/angular-ui-router.js'],
+				src: ['bower_components/angular/angular.js','bower_components/angular-animate/angular-animate.js','bower_components/angular-messages/angular-messages.js','bower_components/angular-aria/angular-aria.js','bower_components/angular-material/angular-material.js','bower_components/angular-ui-router/release/angular-ui-router.js','bower_components/angular-file-upload/dist/angular-file-upload.min.js'],
 				dest: 'js/dependencies.js',
 			}
 		},
