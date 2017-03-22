@@ -564,65 +564,7 @@
           </md-tab>
           <!-- ######################### TAB 3 ####################### -->
 
-          <!-- <md-tab label="PTG">
-          <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Student Meetings</span>
-                  </md-card-title-text>
-              </md-card-title>
-              <md-card-content ng-controller="studentMeetDataCtrl">
-                <div layout="column">
-                  <form ng-submit="studMeetEntry(studentMeetData)" name="meetingForm" novalidate>
-                    <div layout="row">
-                        <md-input-container flex>
-                            <label>Class</label>
-                            <md-select ng-model="studentMeetData.class">
-                            <md-option ng-value="class.value" ng-repeat="class in classes" ng-required="true">{{class.name}}</md-option>
-                        </md-input-container>
 
-                        <md-input-container flex>
-                            <label>Semester</label>
-                            <md-select ng-model="studentMeetData.sem">
-                            <md-option ng-value="sem.value" ng-repeat="sem in semester" ng-required="true">{{sem.name}}</md-option>
-                        </md-input-container>
-                    </div>
-                    <md-button type="submit" class="md-primary">Submit</md-button>
-                  </form>
-                  <div ng-show="serverResp">
-                    <form  name="studMeetForm" ng-submit="saveData(choices)" novalidate >
-                      <div data-ng-repeat="choice in choices" layout="column">
-                        <div layout="row">
-                          <md-input-container flex>
-                              <label>Date of Meeting</label>
-                              <input ng-model="choice.dom" type="text" placeholder="dd-mm-yyyy" autocomplete="off" ng-required="true">
-                          </md-input-container>
-
-                          <md-input-container flex>
-                            <label>Details of the discussion in PTG meeting</label>
-                            <input type="d" ng-model="choice.meetingDetails" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Remarks by the PTG</label>
-                            <input type="d" ng-model="choice.remarks" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        </div>
-                        <div layout="row">
-                          <md-button type="submit">Save</md-button>
-                        </div>
-                      </form>
-                    <div layout="row">
-                      <md-button ng-click="addNewChoice()">Add</md-button>
-                      <md-button button  ng-click="removeChoice($index)">Delete</md-button>
-                    </div>
-                  </div>
-
-
-                </div>
-              </md-card-content>
-            </md-card>
-          </md-tab> -->
 
           <!-- ######################### TAB - Self-Development ####################### -->
 
@@ -1065,8 +1007,93 @@
                         <span class="md-headline">Upload Certificates</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
+                <md-card-content layout="column" ng-controller="certificateCtrl">
+                  <div >
+                    <form ng-submit="storeFile(choice)" name="storeFileNameForm">
+                      <div layout="row">
 
+                       <md-input-container flex>
+                         <label>Certificates</label>
+                         <md-select ng-model="choice.certificate">
+                           <md-option ng-value="certificate.id" ng-repeat="certificate in certificates" ng-required="true">{{certificate.name}} -- {{certificate.activity}}</md-option>
+                         </md-select>
+                       </md-input-container>
+
+                      <br>
+                      </div>
+                      <div layout="row">
+                        <md-button type="submit" class="md-primary">Submit</md-button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div layout="row" ng-if="imageShow == 1">
+                    <input type="file" nv-file-select="" uploader="uploader"/><br/>
+                    <div class="col-md-9" style="margin-bottom: 40px">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th width="50%" class="md-subhead">Name</th>
+                                                    <th ng-show="uploader.isHTML5" class="md-subhead">Size</th>
+                                                    <!-- <th ng-show="uploader.isHTML5" class="md-subhead">Progress</th> -->
+                                                    <th class="md-subhead">Status</th>
+                                                    <th class="md-subhead">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in uploader.queue">
+                                                    <td>
+                                                        <small>{{ item.file.name }}</small>
+                                                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+                                                    </td>
+                                                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                    <!-- <td ng-show="uploader.isHTML5">
+                                                        <div class="progress" style="margin-bottom: 0;">
+                                                            <md-progress-circular class="md-accent" md-mode="determinate" value="{{item.progress}}"></md-progress-circular>
+                                                        </div>
+                                                    </td> -->
+                                                    <td class="text-center">
+                                                        <span ng-show="item.isSuccess"><md-icon class="material-icons">done</md-icon></span>
+                                                        <span ng-show="item.isCancel"><md-icon class="material-icons">clear</md-icon></span>
+                                                        <span ng-show="item.isError"><md-icon class="material-icons">error</md-icon></span>
+                                                    </td>
+                                                    <td nowrap>
+                                                        <md-button  class="md-primary md-icon-button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                            <md-icon class="material-icons">file_upload</md-icon>
+                                                        </md-button>
+                                                        <md-button  class="md-primary md-icon-button"  ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                                            <md-icon class="material-icons">cancel</md-icon>
+                                                        </md-button>
+                                                        <md-button  class="md-warn md-icon-button" ng-click="item.remove()">
+                                                            <md-icon class="material-icons">delete</md-icon>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div>
+                                            <div>
+                                                <md-progress-linear md-mode="determinate" value="{{uploader.progress}}"></md-progress-linear>
+                                                <div class="progress" style="">
+                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                                </div>
+                                            </div>
+                                            <!-- <md-button  class="md-primary" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                                <md-icon class="material-icons">file_upload</md-icon> Upload
+                                            </md-button>
+                                            <md-button  class="md-primary" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                                                <md-icon class="material-icons">cancel</md-icon> Cancel
+                                            </md-button>
+                                            <md-button  class="md-warn" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                                <md-icon class="material-icons">delete</md-icon> Remove
+                                            </md-button> -->
+                                        </div>
+
+                    </div>
+                  </div>
                 </md-card-content>
             </md-card>
 

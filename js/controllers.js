@@ -427,6 +427,36 @@
 
       };
     }])
+    .controller('certificateCtrl',['$scope','FileUploader','user',function($scope,FileUploader,user){
+      $scope.imageShow = 0;
+
+      user.fetchCertificates().then(function(data){
+        $scope.certificates = data.data;
+      });
+
+      $scope.storeFile = function(data){
+          var $data = angular.toJson(data);
+          user.storeFileName($data);
+          $scope.imageShow = 1;
+      }
+
+      var uploader = $scope.uploader = new FileUploader({
+              url: '/ksm/data/upload/uploadCertificate.php'
+          });
+
+          uploader.filters.push({
+              name: 'imageFilter',
+              fn: function(item /*{File|FileLikeObject}*/, options) {
+                  var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                  return '|jpg|png|jpeg|bmp|pdf|'.indexOf(type) !== -1;
+              }
+          });
+
+          uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            $scope.imageShow = 0;
+            uploader = " ";
+          };
+    }])
     .controller('uploadPhotoCtrl',['$scope','FileUploader',function($scope,FileUploader){
       var uploader = $scope.uploader = new FileUploader({
               url: '/ksm/data/upload/upload.php'
@@ -558,14 +588,22 @@
          saveExtraEfforts:function(data){
            return $http.post('/ksm/data/proctor/saveExtraEfforts.php',data);
          },
+         fetchCertificates: function(){
+          return $http.post('/ksm/data/proctor/fetchCertificates.php');
+         },
          fetchPhoto: function(scope){
            $http.post('/ksm/data/proctor/fetchPhoto.php').then(function(data){
              scope.user.photo = data.data[0].photo;
            });
          },
+         storeFileName: function(data){
+            $http.post('/ksm/data/upload/storeFileNameInSession.php',data).then(function(data){
+              console.log(data.data);
+            });
+         },
          saveCertificate: function(data){
            $http.post('/ksm/data/upload/uploadCertificate.php',data).then(function(data){
-              console.log(data.data);
+
            });
          },
          fetchPrevAcademic: function(scope){

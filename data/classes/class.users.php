@@ -1,4 +1,7 @@
-<?php session_start();
+<?php if(!isset($_SESSION))
+    {
+        session_start();
+    }
 	include_once("class.dbinfo.php");
 	// include_once("../classes/class.crypto.php");
 
@@ -149,6 +152,15 @@
 			$stmt = $this->pdo->prepare("UPDATE PM010001 SET photo = :photo WHERE student_id = :student_id");
 			$stmt->bindParam(":student_id",$id,PDO::PARAM_STR);
 			$stmt->bindParam(":photo",$path,PDO::PARAM_STR);
+			$stmt->execute();
+
+		}
+		public function saveCertificate($path,$id,$certificateId){
+      echo $certificateId;
+			$stmt = $this->pdo->prepare("UPDATE PM010015 SET image = :photo WHERE student_id = :student_id AND sr_no = :prim_id");
+      $stmt->bindParam(":photo",$path,PDO::PARAM_STR);
+      $stmt->bindParam(":student_id",$id,PDO::PARAM_STR);
+			$stmt->bindParam(":prim_id",$certificateId,PDO::PARAM_STR);
 			$stmt->execute();
 
 		}

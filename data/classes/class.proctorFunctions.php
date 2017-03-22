@@ -1,4 +1,7 @@
-<?php session_start();
+<?php if(!isset($_SESSION))
+    {
+        session_start();
+    } 
 include_once('class.dbinfo.php');
 
 /**
@@ -66,6 +69,15 @@ class proctor {
 
 
   }
+    public function fetchCertificates($classId){
+
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010015 WHERE student_id = :student_id AND class_id = :class_id");
+      $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->bindParam(":class_id",$classId,PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
 
     public function checkEntry($table,$classId){
       $stmt = $this->pdo->prepare("SELECT prim_id,approved FROM ".$table." WHERE class_id = :class_id");
@@ -110,7 +122,7 @@ class proctor {
     $arr = array();
     foreach ($data as $key => $value) {
         if ($data[$key]['type']==8 || $data[$key]['activity'] == 8 || $data[$key]['activity'] == 7 || $data[$key]['activity'] == 4) {
-          $type = "0";
+          $type = "8";
           $specs = $data[$key]['specs'];
         }
         else {
