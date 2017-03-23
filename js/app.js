@@ -31,18 +31,6 @@ var app = null;
         controller:'pformCtrl',
         data: {authenticate : true}
       })
-      .state('user.sform',{
-        url:'/user/staff-form',
-        templateUrl:'templates/staff/staff.html',
-        controller:'sformCtrl',
-        data: {authenticate : true}
-      })
-      .state('user.shform',{
-        url:'/user/staffhome-form',
-        templateUrl:'templates/staff/staff_home.html',
-        controller:'shformCtrl',
-        data: {authenticate : true}
-      })
       .state('user',{
         abstract: true,
         // url:'/user',
@@ -53,6 +41,40 @@ var app = null;
         url:'/user/home',
         templateUrl:'templates/user/home.html',
         controller:'userHomeCtrl',
+        data: {authenticate : true}
+      })
+      .state('staff.details',{
+        url:'/staff/details',
+        templateUrl:'templates/staff/staffDetails.html',
+        controller:'staffDetailsCtrl',
+        data: {authenticate : true}
+      })
+      .state('admin.details',{
+        url:'/admin/details',
+        templateUrl:'templates/admin/adminDetails.html',
+        controller:'adminDetailsCtrl',
+        data: {authenticate : true}
+      })
+      .state('staff',{
+        abstract: true,
+        templateUrl:'templates/staff/base.html',
+        data: {authenticate : true}
+      })
+      .state('admin',{
+        abstract: true,
+        templateUrl:'templates/admin/base.html',
+        data: {authenticate : true}
+      })
+      .state('staff.home',{
+        url:'/staff/home',
+        templateUrl:'templates/staff/home.html',
+        controller:'staffHomeCtrl',
+        data: {authenticate : true}
+      })
+      .state('admin.home',{
+        url:'/admin/home',
+        templateUrl:'templates/admin/home.html',
+        controller:'adminHomeCtrl',
         data: {authenticate : true}
       });
     		$urlRouterProvider.otherwise('/');

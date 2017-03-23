@@ -46,6 +46,24 @@
 			$stmt->bindParam(":email_suff",$email_suff,PDO::PARAM_STR);
 			$stmt->bindParam(":password",$data->password,PDO::PARAM_STR);
 			$stmt->execute();
+
+      $stmt = $this->pdo->prepare("INSERT INTO PM010002 (firstname,lastname,studentID,email) VALUES (:firstname,:lastname,:studentID,:email)");
+      $stmt->bindParam(":firstname",$data['firstname'],PDO::PARAM_STR);
+      $stmt->bindParam(":lastname",$data['lastname'],PDO::PARAM_STR);
+      $stmt->bindParam(":studentID",$data['studentID'],PDO::PARAM_STR);
+      $stmt->bindParam(":email",$data['email'],PDO::PARAM_STR);
+      $stmt->execute();
+
+      $stmt = $this->pdo->prepare("SELECT sr_no FROM PM010002 WHERE email = :email ORDER BY sr_no DESC LIMIT 1");
+      $stmt->bindParam(":email",$data['email'],PDO::PARAM_STR);
+      $stmt->execute();
+      $FK_02_03 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      $stmt = $this->pdo->prepare("INSERT INTO PM010003 (student_key_id) VALUES (:key)");
+      $stmt->bindParam(":key",$FK_02_03[0]['sr_no'],PDO::PARAM_STR);
+      $stmt->execute();
+
+
 			// $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		public function login($data){
@@ -174,13 +192,25 @@
 		}
 
 		public function proctorForm($data){
+
 			$this->pdo->exec("use ksm_plexus");
 			if (isset($data)) {
-				$stmt = $this->pdo->prepare("INSERT INTO PM010002 (firstname,lastname,studentId,branch,shift,yoa,myDate,email,phone,Laddress,Paddress) VALUES (:firstname,:lastname,:studentID,:branch,:shift,:yoa,:myDate,:email,:phone,:Laddress,:Paddress)");
+				$stmt = $this->pdo->prepare("UPDATE PM010002  SET
+          firstname = :firstname,
+          lastname = :lastname,
+          branch = :branch,
+          designation = :designation,
+          shift = :shift,
+          yoa = :yoa,
+          myDate = :myDate,
+          email = :email,
+          phone = :phone,
+          Laddress = :Laddress,
+          Paddress = :Paddress WHERE studentID = :studentID");
 				$stmt->bindParam(":firstname",$data['firstname'],PDO::PARAM_STR);
 				$stmt->bindParam(":lastname",$data['lastname'],PDO::PARAM_STR);
-				$stmt->bindParam(":studentID",$data['studentID'],PDO::PARAM_STR);
 				$stmt->bindParam(":branch",$data['branch'],PDO::PARAM_STR);
+				$stmt->bindParam(":designation",$data['designation'],PDO::PARAM_STR);
 				$stmt->bindParam(":shift",$data['shift'],PDO::PARAM_STR);
 				$stmt->bindParam(":yoa",$data['yoa'],PDO::PARAM_STR);
 				$stmt->bindParam(":myDate",$data['myDate'],PDO::PARAM_STR);
@@ -188,15 +218,32 @@
 				$stmt->bindParam(":phone",$data['phone'],PDO::PARAM_STR);
 				$stmt->bindParam(":Laddress",$data['Laddress'],PDO::PARAM_STR);
 				$stmt->bindParam(":Paddress",$data['Paddress'],PDO::PARAM_STR);
+        $stmt->bindParam(":studentID",$_SESSION['studentId'],PDO::PARAM_STR);
 				$stmt->execute();
 
-				$stmt = $this->pdo->prepare("SELECT sr_no FROM PM010002 WHERE student_id = :studentID ORDER BY sr_no DESC LIMIT 1");
-				$stmt->bindParam(":studentID",$data['studentID'],PDO::PARAM_STR);
+				$stmt = $this->pdo->prepare("SELECT sr_no FROM PM010002 WHERE email = :email ORDER BY sr_no DESC LIMIT 1");
+				$stmt->bindParam(":email",$data['email'],PDO::PARAM_STR);
 				$stmt->execute();
 				$FK_02_03 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-				$stmt = $this->pdo->prepare("INSERT INTO PM010003 (student_key_id,father_name,father_occ,father_contact,mother_name,mother_occ,mother_contact,l_guardian_name,l_guardian_contact,doc_name,doc_contact,med_history,personality_traits,interest_hobbies,awards,inspiration) VALUES (:key,:fathername,:foccupation,:fcontact,:mothername,:moccupation,:mcontact,:guardianname,:gcontact,:docname,:docContact,:medHistory,:personalityTraits,:interest,:awards,:inspiration)");
-				$stmt->bindParam(":key",$FK_02_03[0]['sr_no'],PDO::PARAM_STR);
+				$stmt = $this->pdo->prepare("UPDATE PM010003 SET
+          father_name = :fathername,
+          father_occ = :foccupation,
+          father_contact = :fcontact,
+          mother_name = :mothername,
+          mother_occ = :moccupation,
+          mother_contact = :mcontact,
+          l_guardian_name = :guardianname,
+          l_guardian_contact = :gcontact,
+          doc_name = :docname,
+          doc_contact = :docContact,
+          med_history = :medHistory,
+          personality_traits = :personalityTraits,
+          interest_hobbies = :interest,
+          awards = :awards,
+          inspiration = :inspiration WHERE
+          student_key_id = :key
+          ");
 				$stmt->bindParam(":fathername",$data['fathername'],PDO::PARAM_STR);
 				$stmt->bindParam(":foccupation",$data['foccupation'],PDO::PARAM_STR);
 				$stmt->bindParam(":fcontact",$data['fcontact'],PDO::PARAM_STR);
@@ -212,6 +259,7 @@
 				$stmt->bindParam(":interest",$data['interests'],PDO::PARAM_STR);
 				$stmt->bindParam(":awards",$data['awards'],PDO::PARAM_STR);
 				$stmt->bindParam(":inspiration",$data['roleModel'],PDO::PARAM_STR);
+        $stmt->bindParam(":key",$FK_02_03[0]['sr_no'],PDO::PARAM_STR);
 				$stmt->execute();
 				echo json_encode($FK_02_03);
 

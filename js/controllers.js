@@ -21,10 +21,15 @@
       $scope.logIn = function(data){
         var $data = angular.toJson(data);
         Authenticate.logIn($scope,$data).then(function(data){
-           console.log(data.data);
-           var user = data.data;
-           if(user){
+           var user = data.data[0];
+           if(user.account_type == 0){
              $state.go('user.home',{});
+           }
+           else if(user.account_type == 1){
+             $state.go('staff.home',{});
+           }
+           else if(user.account_type == 2){
+             $state.go('admin.home',{});
            }
            else {
              $scope.incorrectPassword();
@@ -108,8 +113,11 @@
         user.fetchPhoto($scope);
 
     }])
-    .controller('sformCtrl',['$scope',function($scope){
-        $scope.message = "Hi this a test msg";
+    .controller('staffHomeCtrl',['$scope','user',function($scope,user){
+      user.fetchProctorBasic($scope);
+    }])
+    .controller('adminHomeCtrl',['$scope','user',function($scope,user){
+      user.fetchProctorBasic($scope);
     }])
     .controller('profileMenuCtrl',['$scope','Authenticate','$state',function($scope,Authenticate,$state){
         $scope.logout = function(){
@@ -421,12 +429,6 @@
           user.saveCurrentClass($data);
         }
     }])
-    .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
-
-      $scope.SelfDevEntry = function() {
-
-      };
-    }])
     .controller('certificateCtrl',['$scope','FileUploader','user',function($scope,FileUploader,user){
       $scope.imageShow = 0;
 
@@ -478,13 +480,338 @@
               //     console.info('onCompleteAll',response);
               // };
     }])
-//=======
-    .controller('SelfDevCtrl',['$scope',function($scope){
-//>>>>>>> 29079b7feef880bbd0a8dfa795af60ba3fec25b
+
+    .controller('SelfDevCtrl',['$scope','SelfDevData',function($scope,SelfDevData){
+      $scope.SelfDevComSkill = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:1});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.SelfDevAptiTraining = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:2});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.TechSkillDevData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:3});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.prepData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:4});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.EDprogData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:5});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.langTrainData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:6});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.finishingSchool = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:7});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.spiritualHolData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:8});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
+      $scope.intData = function(data){
+        var data1 = [];
+        data1[0] = data;
+        data1.push({type:9});
+        var $data = angular.toJson(data1);
+        SelfDevData.saveData($data);
+      }
 
     }])
+    .controller('staffDetailsCtrl',['$scope','user',function($scope,user){
+
+      user.fetchProctorBasic($scope);
+      $scope.saveBasicDetail = function(data){
+        var $data = angular.toJson(data);
+        user.saveProctor($scope,$data).then(function(data){
+          console.log(data.data);
+        });
+      }
+
+      $scope.branchList = [
+            { name: 'Computer Engineering', value: 'Computer' },
+            { name: 'Mechanical Engineering', value: 'Mechanical' },
+            { name: 'Electronics and Telecommunication ', value: 'ENTC' }
+          ];
+      $scope.designationList = [
+            { name: 'Professor', value: 'Professor' },
+            { name: 'Associate Professor', value: 'Associate Professor' },
+            { name: 'Assistant Professor', value: 'Assistant Professor' },
+            { name: 'HOD', value: 'HOD' },
+            { name: 'Dean', value: 'Dean' },
+            { name: 'Principal', value: 'Principal' }
+          ];
+
+    }])
+    .controller('adminDetailsCtrl',['$scope','user',function($scope,user){
+
+      user.fetchProctorBasic($scope);
+      $scope.saveBasicDetail = function(data){
+        var $data = angular.toJson(data);
+        user.saveProctor($scope,$data).then(function(data){
+          console.log(data.data);
+        });
+      }
+
+      $scope.branchList = [
+            { name: 'Computer Engineering', value: 'Computer' },
+            { name: 'Mechanical Engineering', value: 'Mechanical' },
+            { name: 'Electronics and Telecommunication ', value: 'ENTC' }
+          ];
+      $scope.designationList = [
+            { name: 'Professor', value: 'Professor' },
+            { name: 'Associate Professor', value: 'Associate Professor' },
+            { name: 'Assistant Professor', value: 'Assistant Professor' },
+            { name: 'HOD', value: 'HOD' },
+            { name: 'Dean', value: 'Dean' },
+            { name: 'Principal', value: 'Principal' }
+          ];
+
+    }])
+    .controller('researchDataCtrl',['$scope','researchData',function($scope,researchData){
+        $scope.choices = [{}];
+
+        $scope.classes = [
+            { name: 'Patent', value: '1' },
+            { name: 'IPR', value: '2' },
+              { name: 'Revenue', value: '3' }
+          ];
+          $scope.saveFormResearchState = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:3,subtype:3});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+          }
+          $scope.saveFormResearchInternational = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:3,subtype:1});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchNational = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:3,subtype:2});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchMajor = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:1,subtype:1});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchMini = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:1,subtype:2});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchTInt = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:1,subtype:3});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchTCol = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:1,subtype:4});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
+          $scope.saveFormResearchIPR = function(data,choice){
+            var data1 = [];
+            data1[0] = data;
+            data1.push({type:2,subtype:1});
+            data1.push(choice);
+            var $data = angular.toJson(data1);
+            researchData.submitData($data);
+
+          }
 
 
+          $scope.addNewChoice = function() {
+            $scope.choices.push({});
+          };
+
+       $scope.removeChoice = function(item) {
+         var removeCHoice = $scope.choices.length-1;
+         $scope.choices.splice(removeCHoice);
+         };
+
+
+    }])
+    .controller('extraCurriDataCtrl',['$scope','extraCurriData',function($scope,extraCurriData){
+      $scope.choices = [{}];
+
+       $scope.saveExtraPANA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:2,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+        //  console.log($data);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraLDA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:5,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraSSPA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:4,subtype:2});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraSSSA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:4,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraSPC = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:3,subtype:3});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraSPU = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:3,subtype:2});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraSPNA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:3,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraVIC = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:2,subtype:3});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraVIU = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:2,subtype:2});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraVINA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:2,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraPAC = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:1,subtype:3});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraPAU = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:1,subtype:2});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+       $scope.saveExtraPANA = function(data,choice){
+         var data1 = [];
+         data1[0] = data;
+         data1.push({type:1,subtype:1});
+         data1.push(choice);
+         var $data = angular.toJson(data1);
+         extraCurriData.submitData($data);
+       }
+
+
+       $scope.addNewChoice = function() {
+         $scope.choices.push({});
+       };
+
+       $scope.removeChoice = function(item) {
+         $scope.choices.splice(item, 1);
+         };
+
+
+    }])
+    .controller('assessmentCtrl',['$scope','user',function($scope,user){
+      user.fetchAssessment($scope);
+    }])
     //#################################################### DIRECTIVES
     .directive('ngUnique', function(user) {
     return {
@@ -537,7 +864,6 @@
          },
          fetchProctorBasic : function(scope){
            $http.post('/ksm/data/users/fetchProctorBasic.php').then(function(data){
-
              scope.user = data.data[0];
              if(data.data[0].date == "0000-00-00"){
    						scope.user.myDate = "";
@@ -606,6 +932,11 @@
 
            });
          },
+         fetchAssessment: function(scope){
+            $http.post('/ksm/data/calc/calcMarks.php').then(function(data){
+                scope.marks = data.data;
+            });
+         },
          fetchPrevAcademic: function(scope){
            $http.post('/ksm/data/users/fetchPrevAcademic.php').then(function(data){
              scope.user.yop = data.data[0].yop;
@@ -650,6 +981,15 @@
         }
       }
     }])
+    .factory('extraCurriData',['$http',function($http){
+      return {
+        submitData: function(data){
+          $http.post('/ksm/data/proctor/storeextraCurriData.php',data).then(function(data){
+            console.log(data.data);
+          });
+        }
+      }
+    }])
     .factory('academicData',['$http',function($http){
       return {
         submitAcademicInfo: function(scope,data){
@@ -660,14 +1000,16 @@
         }
       }
     }])
-    // .factory('SelfDevData',['$http',function($http){
-    //   return {
-    //     SelfDevEntry: function(scope,data){
-    //
-    //     }
-    //
-    //   }
-    // }])
+    .factory('SelfDevData',['$http',function($http){
+      return {
+        saveData: function(data){
+          $http.post('/ksm/data/proctor/saveSelfDevData.php',data).then(function(data){
+            console.log(data.data);
+          });
+        }
+
+      }
+    }])
     .factory('unitTestData',['$http',function($http){
       return {
         checkEntryUnitTest: function($scope,data){
@@ -679,6 +1021,19 @@
 
       }
     }])
+    .factory('researchData',['$http',function($http){
+     return {
+      checkEntryResearch: function($scope,data){
+         return $http.post('/ksm/data/proctor/checkResearch.php',data);
+       },
+       submitData: function(data){
+         $http.post('/ksm/data/proctor/storeResearchData.php',data).then(function(data){
+           console.log(data.data);
+         });
+
+       }
+     }
+   }])
     .factory('univExamData',['$http',function($http){
       return {
         submitData: function($data){

@@ -472,12 +472,20 @@
                     </form>
                   </div>
                   <div layout="column" ng-show="positiveServerResp">
-                    <form ng-submit="saveAttendanceData(attendanceData)" name="attendanceForm" novalidate>
+                    <form ng-submit="saveAttendanceData(attendanceDat)" name="attendanceForm" novalidate>
                       <div layout="row">
 
-                      <md-input-container flex>
+                        <!-- <md-input-container flex>
                           <label>Attendance</label>
-                          <input ng-model="attendanceData.attendance" type="number" autocomplete="off" ng-required="true">
+                          <input ng-model="attendanceData.attendance" type="text" autocomplete="off" ng-required="true">
+                        </md-input-container> -->
+                        <md-input-container flex>
+                          <label>Exam</label>
+                          <input ng-model="attendanceDat.attendance" type="text"  autocomplete="off" ng-required="true">
+                        </md-input-container>
+                        <md-input-container ng-show="userData.fortnight == 7" flex>
+                          <label>Attendance Percentage</label>
+                          <input ng-model="attendanceDat.attendancePercentage" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
 
                       </div>
@@ -570,7 +578,6 @@
 
           <md-tab label="Self-Development">
           <md-card>
-
             <md-card-content ng-controller="SelfDevCtrl">
                 <div layout="column">
                   <md-card-title>
@@ -578,38 +585,39 @@
                         <span class="md-title">1. Communication Skill Development</span>
                       </md-card-title-text>
                   </md-card-title>
-                  <form ng-submit="SelfDevEntry(SelfDevData)" name="SelfDevForm" novalidate>
+                  <form ng-submit="SelfDevComSkill(SelfDevData)" name="SelfDevForm" novalidate>
                     <br>
                     <div layout="row">
                       <div flex="5"></div>
                       <div flex="80">
-                    <md-radio-group ng-model="SelfDevData.choice1">
-                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
-                  </md-radio-group>
-                </div>
-                <div flex="10"></div>
-              </div>
+                        <md-radio-group ng-model="SelfDevData.choice">
+                          <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                          <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                        </md-radio-group>
+                      </div>
+                      <div flex="10"></div>
+                    </div>
 
-
-                    <div layout="column" ng-show="SelfDevData.choice1 == 1">
+                    <div layout="column" ng-show="SelfDevData.choice == 1">
                     <div layout="row">
                       <md-input-container flex>
                             <label>Name</label>
-                            <input ng-model="SelfDevData.name1" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="SelfDevData.name" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                           <md-input-container flex>
                               <label>Duration</label>
-                              <input ng-model="SelfDevData.duration1" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.duration" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                     </div>
                     <div layout="row">
                             <md-input-container flex>
                             <label>Details</label>
-                              <input ng-model="SelfDevData.details1" type="text" autocomplete="off" ng-required="true">
+                              <input ng-model="SelfDevData.details" type="text" autocomplete="off" ng-required="true">
                             </md-input-container>
                     </div>
                   </div>
+                  <md-button type="submit" class="md-primary">SUBMIT</md-button>
+                </form>
 
                   <md-card-title>
                       <md-card-title-text>
@@ -617,46 +625,51 @@
                       </md-card-title-text>
                   </md-card-title>
                   <br>
+                  <form ng-submit="SelfDevAptiTraining(AptiData)" name="SelfDevForm" novalidate>
                   <div layout="row">
                     <div flex="5"></div>
-                    <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice2">
-                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
-                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
-                </md-radio-group>
-              </div>
-              <div flex="10"></div>
-            </div>
+                      <div flex="80">
+                        <md-radio-group ng-model="AptiData.choice">
+                          <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                          <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                          </md-radio-group>
+                        </div>
+                        <div flex="10"></div>
+                      </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice2 == 1">
+                  <div layout="column" ng-show="AptiData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name2" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="AptiData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration2" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="AptiData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details2" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="AptiData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
 
                 <md-card-title>
                     <md-card-title-text>
                       <span class="md-title">3.Technical Skill Development</span>
                     </md-card-title-text>
                 </md-card-title>
+
                   <br>
+                  <form ng-submit="TechSkillDevData(TechData)" name="SelfDevForm" novalidate>
                   <div layout="row">
                     <div flex="5"></div>
                     <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice3" >
+                  <md-radio-group ng-model="TechData.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -664,34 +677,38 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice3 == 1">
+                  <div layout="column" ng-show="TechData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name3" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="TechData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration3" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="TechData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details3" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="TechData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
                 <md-card-title>
                     <md-card-title-text>
                       <span class="md-title">4. Preparation for Higher Study</span>
                     </md-card-title-text>
                 </md-card-title>
+
                 <br>
+                <form ng-submit="prepData(hPrepData)" name="SelfDevForm" novalidate>
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice4" >
+                  <md-radio-group ng-model="hPrepData.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -699,25 +716,26 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice4 == 1">
+                  <div layout="column" ng-show="hPrepData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name4" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="hPrepData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration4" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="hPrepData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details4" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="hPrepData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
-
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
 
                 <md-card-title>
                     <md-card-title-text>
@@ -725,11 +743,14 @@
                     </md-card-title-text>
                 </md-card-title>
 
+
                 <br>
+                <form ng-submit="EDprogData(EDProg)" name="SelfDevForm" novalidate>
+
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice5" >
+                  <md-radio-group ng-model="EDProg.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -737,35 +758,37 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice5 == 1">
+                  <div layout="column" ng-show="EDProg.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name5" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="EDProg.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration5" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="EDProg.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details5" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="EDProg.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
-
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
                 <md-card-title>
                     <md-card-title-text>
                       <span class="md-title">6. Language Training</span>
                     </md-card-title-text>
                 </md-card-title>
                 <br>
+                <form ng-submit="langTrainData(LTrainData)" name="SelfDevForm" novalidate>
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice6" >
+                  <md-radio-group ng-model="LTrainData.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -773,36 +796,37 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice6 == 1">
+                  <div layout="column" ng-show="LTrainData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name6" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="LTrainData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration6" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="LTrainData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details6" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="LTrainData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
-
-
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
                 <md-card-title>
                     <md-card-title-text>
                       <span class="md-title">7.Finishing School</span>
                     </md-card-title-text>
                 </md-card-title>
                 <br>
+                <form ng-submit="finishingSchool(FinSchoolData)" name="SelfDevForm" novalidate>
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice7" >
+                  <md-radio-group ng-model="FinSchoolData.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -810,25 +834,26 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice7 == 1">
+                  <div layout="column" ng-show="FinSchoolData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name7" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="FinSchoolData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration7" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="FinSchoolData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details7" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="FinSchoolData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
-
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
 
                 <md-card-title>
                     <md-card-title-text>
@@ -836,10 +861,11 @@
                     </md-card-title-text>
                 </md-card-title>
                 <br>
+                <form ng-submit="spiritualHolData(SpiHolDevData)" name="SelfDevForm" novalidate>
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                    <md-radio-group ng-model="SelfDevData.choice8" >
+                    <md-radio-group ng-model="SpiHolDevData.choice" >
                     <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                     <md-radio-button value="0" class="md-primary">No</md-radio-button>
                     </md-radio-group>
@@ -849,34 +875,37 @@
                 </div>
 
 
-                  <div layout="column" ng-show="SelfDevData.choice8 == 1">
+                  <div layout="column" ng-show="SpiHolDevData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name8" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="SpiHolDevData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration8" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="SpiHolDevData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details8" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="SpiHolDevData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
+                <md-button type="submit" class="md-primary">SUBMIT</md-button>
+              </form>
                 <md-card-title>
                     <md-card-title-text>
                       <span class="md-title">9. Internship or Summer Training </span>
                     </md-card-title-text>
                 </md-card-title>
                 <br>
+                <form ng-submit="intData(IntSumTrainData)" name="SelfDevForm" novalidate>
                 <div layout="row">
                   <div flex="5"></div>
                   <div flex="80">
-                  <md-radio-group ng-model="SelfDevData.choice9" >
+                  <md-radio-group ng-model="IntSumTrainData.choice" >
                   <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
                   <md-radio-button value="0" class="md-primary">No</md-radio-button>
                 </md-radio-group>
@@ -884,27 +913,27 @@
               <div flex="10"></div>
             </div>
 
-                  <div layout="column" ng-show="SelfDevData.choice9 == 1">
+                  <div layout="column" ng-show="IntSumTrainData.choice == 1">
                   <div layout="row">
                     <md-input-container flex>
                           <label>Name</label>
-                          <input ng-model="SelfDevData.name9" type="text" autocomplete="off" ng-required="true">
+                          <input ng-model="IntSumTrainData.name" type="text" autocomplete="off" ng-required="true">
                       </md-input-container>
                         <md-input-container flex>
                             <label>Duration</label>
-                            <input ng-model="SelfDevData.duration9" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="IntSumTrainData.duration" type="text" autocomplete="off" ng-required="true">
                         </md-input-container>
                   </div>
                   <div layout="row">
                           <md-input-container flex>
                           <label>Details</label>
-                            <input ng-model="SelfDevData.details9" type="text" autocomplete="off" ng-required="true">
+                            <input ng-model="IntSumTrainData.details" type="text" autocomplete="off" ng-required="true">
                           </md-input-container>
                   </div>
                 </div>
 
                 <div layout="row">
-                  <md-button type="submit">SUBMIT</md-button>
+                  <md-button type="submit" class="md-primary">SUBMIT</md-button>
                 </div>
 
                   </form>
@@ -1081,169 +1110,848 @@
                                                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                                                 </div>
                                             </div>
-                                            <!-- <md-button  class="md-primary" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                                                <md-icon class="material-icons">file_upload</md-icon> Upload
-                                            </md-button>
-                                            <md-button  class="md-primary" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                                                <md-icon class="material-icons">cancel</md-icon> Cancel
-                                            </md-button>
-                                            <md-button  class="md-warn" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                                                <md-icon class="material-icons">delete</md-icon> Remove
-                                            </md-button> -->
                                         </div>
 
                     </div>
                   </div>
                 </md-card-content>
             </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Extra-curricular Activities</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-content class="md-padding">
+                      <md-tabs>
+                          <md-tab label="Performaing Art">
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">National/International Level/Special Achievement</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                <form ng-submit="saveExtraPANA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                  <md-radio-group ng-model="extraCurriData.choice">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                  </md-radio-group>
 
+                                  <div layout="column" ng-show="extraCurriData.choice == 1">
+                                    <div layout="column">
+                                      <div  data-ng-repeat="choice in choices" >
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Name of Event</label>
+                                            <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Details of Event</label>
+                                            <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                      </div>
+                                      <div layout="row">
+                                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <md-button type="submit" class="md-primary">Save</md-button>
+                                </form>
+                              </md-content>
+                            </md-card>
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">University/ State Level</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                                <md-card-content>
+                                  <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                    <form ng-submit="saveExtraPAU(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                      <md-radio-group ng-model="extraCurriData.choice">
+                                        <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                        <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                      </md-radio-group>
+
+                                      <div layout="column" ng-show="extraCurriData.choice == 1">
+                                        <div layout="column">
+                                          <div  data-ng-repeat="choice in choices" >
+                                            <div layout="row">
+                                              <md-input-container flex>
+                                                <label>Name of Event</label>
+                                                <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                              </md-input-container>
+                                            </div>
+                                            <div layout="row">
+                                            <md-input-container flex>
+                                              <label>Details of Event</label>
+                                              <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                        </div>
+                                        <div layout="row">
+                                          <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                          <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <md-button type="submit" class="md-primary">Save</md-button>
+                                  </form>
+                                  </md-content>
+                                </md-card-content>
+                            </md-card>
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">College Level
+                                  </span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                                <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                  <form ng-submit="saveExtraPAC(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                    <md-radio-group ng-model="extraCurriData.choice">
+                                      <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                      <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                    </md-radio-group>
+                                    <div layout="column" ng-show="extraCurriData.choice == 1">
+                                      <div layout="column">
+                                        <div  data-ng-repeat="choice in choices" >
+                                          <div layout="row">
+                                            <md-input-container flex>
+                                              <label>Name of Event</label>
+                                              <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                          <div layout="row">
+                                            <md-input-container flex>
+                                              <label>Details of Event</label>
+                                              <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                        </div>
+                                        <div layout="row">
+                                          <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                          <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <md-button type="submit" class="md-primary">Save</md-button>
+                                  </form>
+                                </md-content>
+                              </md-card-content>
+                          </md-tab>
+                          <md-tab label="Visual and Library Art">
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">National/International Level/Special Achievement</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                                <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                  <form ng-submit="saveExtraVINA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                    <md-radio-group ng-model="extraCurriData.choice">
+                                      <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                      <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                    </md-radio-group>
+                                    <div layout="column" ng-show="extraCurriData.choice == 1">
+                                      <div layout="column">
+                                        <div  data-ng-repeat="choice in choices" >
+                                          <div layout="row">
+                                            <md-input-container flex>
+                                              <label>Name of Event</label>
+                                              <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                          <div layout="row">
+                                            <md-input-container flex>
+                                              <label>Details of Event</label>
+                                              <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                            </md-input-container>
+                                          </div>
+                                        </div>
+                                        <div layout="row">
+                                          <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                          <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <md-button type="submit" class="md-primary">Save</md-button>
+                                  </form>
+                                </md-content>
+                              </md-card-content>
+                            </md-card>
+
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">University/ State Level</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                              <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                <form ng-submit="saveExtraVIU(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                  <md-radio-group ng-model="extraCurriData.choice">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                  </md-radio-group>
+                                  <div layout="column" ng-show="extraCurriData.choice == 1">
+                                    <div layout="column">
+                                      <div  data-ng-repeat="choice in choices" >
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Name of Event</label>
+                                            <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Details of Event</label>
+                                            <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                      </div>
+                                      <div layout="row">
+                                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <md-button type="submit" class="md-primary">Save</md-button>
+                                </form>
+                              </md-content>
+                            </md-card-content>
+                          </md-card>
+
+                          <md-card>
+                            <md-card-title>
+                              <md-card-title-text>
+                                <span class="md-headline">College Level
+                                </span>
+                              </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                            <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                              <form ng-submit="saveExtraVIC(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                <md-radio-group ng-model="extraCurriData.choice">
+                                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                </md-radio-group>
+                                <div layout="column" ng-show="extraCurriData.choice == 1">
+                                  <div layout="column">
+                                    <div  data-ng-repeat="choice in choices" >
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Name of Event</label>
+                                          <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Details of Event</label>
+                                          <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                    </div>
+                                    <div layout="row">
+                                      <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                      <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <md-button type="submit" class="md-primary">Save</md-button>
+                              </form>
+                            </md-content>
+                          </md-card-content>
+                        </md-card>
+
+                          </md-tab>
+                          <md-tab label="Sports">
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">National/International Level/Special Achievement</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                              <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                <form ng-submit="saveExtraSPNA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                  <md-radio-group ng-model="extraCurriData.choice">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                  </md-radio-group>
+
+                                  <div layout="column" ng-show="extraCurriData.choice == 1">
+                                    <div layout="column">
+                                      <div  data-ng-repeat="choice in choices" >
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Name of Event</label>
+                                            <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Details of Event</label>
+                                            <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                      </div>
+                                      <div layout="row">
+                                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <md-button type="submit" class="md-primary">Save</md-button>
+                                </form>
+
+                              </md-content>
+                            </md-card-content>
+                          </md-card>
+                          <md-card>
+                            <md-card-title>
+                              <md-card-title-text>
+                                <span class="md-headline">University/ State Level</span>
+                              </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                            <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                              <form ng-submit="saveExtraSPU(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                <md-radio-group ng-model="extraCurriData.choice1">
+                                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                </md-radio-group>
+
+                                <div layout="column" ng-show="extraCurriData.choice1 == 1">
+                                  <div layout="column">
+                                    <div  data-ng-repeat="choice in choices" >
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Name of Event</label>
+                                          <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Details of Event</label>
+                                          <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                    </div>
+                                    <div layout="row">
+                                      <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                      <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <md-button type="submit" class="md-primary">Save</md-button>
+                              </form>
+                            </md-content>
+                          </md-card-content>
+                        </md-card>
+
+                        <md-card>
+                          <md-card-title>
+                            <md-card-title-text>
+                              <span class="md-headline">College Level
+                              </span>
+                            </md-card-title-text>
+                          </md-card-title>
+                          <md-card-content>
+                          <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                            <form ng-submit="saveExtraSPC(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                              <md-radio-group ng-model="extraCurriData.choice">
+                                <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                              </md-radio-group>
+                              <div layout="column" ng-show="extraCurriData.choice == 1">
+                                <div layout="column">
+                                  <div  data-ng-repeat="choice in choices" >
+                                    <div layout="row">
+                                      <md-input-container flex>
+                                        <label>Name of Event</label>
+                                        <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                      </md-input-container>
+                                    </div>
+                                    <div layout="row">
+                                      <md-input-container flex>
+                                        <label>Details of Event</label>
+                                        <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                      </md-input-container>
+                                    </div>
+                                  </div>
+                                  <div layout="row">
+                                    <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                    <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <md-button type="submit" class="md-primary">Save</md-button>
+                              </form>
+                              </md-content>
+                            </md-card-content>
+                          </md-card>
+                          </md-tab>
+                          <md-tab label="Social Service">
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">Special Achievement</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                              <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                <form ng-submit="saveExtraSSSA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                  <md-radio-group ng-model="extraCurriData.choice">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                  </md-radio-group>
+                                  <div layout="column" ng-show="extraCurriData.choice == 1">
+                                    <div layout="column">
+                                      <div  data-ng-repeat="choice in choices" >
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Name of Event</label>
+                                            <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Details of Event</label>
+                                            <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                      </div>
+                                      <div layout="row">
+                                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <md-button type="submit" class="md-primary">Save</md-button>
+                                </form>
+                              </md-content>
+                            </md-card-content>
+                          </md-card>
+                          <md-card>
+                            <md-card-title>
+                              <md-card-title-text>
+                                <span class="md-headline">Participation</span>
+                              </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                            <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                              <form ng-submit="saveExtraSSPA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                <md-radio-group ng-model="extraCurriData.choice">
+                                  <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                  <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                </md-radio-group>
+
+                                <div layout="column" ng-show="extraCurriData.choice == 1">
+                                  <div layout="column">
+                                    <div  data-ng-repeat="choice in choices" >
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Name of Event</label>
+                                          <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                      <div layout="row">
+                                        <md-input-container flex>
+                                          <label>Details of Event</label>
+                                          <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                        </md-input-container>
+                                      </div>
+                                    </div>
+                                    <div layout="row">
+                                      <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                      <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <md-button type="submit" class="md-primary">Save</md-button>
+                              </form>
+                            </md-content>
+                          </md-card-content>
+                          </md-card>
+                          </md-tab>
+                          <md-tab label="Leadership Development Activities">
+                            <md-card>
+                              <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">Students Chapter/Council/Associations Or Training And Placement</span>
+                                </md-card-title-text>
+                              </md-card-title>
+                              <md-card-content>
+                              <md-content class="md-padding" ng-controller= "extraCurriDataCtrl">
+                                <form ng-submit="saveExtraLDA(choices,extraCurriData)" name="extraCurriDataForm" novalidate>
+                                  <md-radio-group ng-model="extraCurriData.choice">
+                                    <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                                    <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                                  </md-radio-group>
+
+                                  <div layout="column" ng-show="extraCurriData.choice == 1">
+                                    <div layout="column">
+                                      <div  data-ng-repeat="choice in choices" >
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Name of Event</label>
+                                            <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                        <div layout="row">
+                                          <md-input-container flex>
+                                            <label>Details of Event</label>
+                                            <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                          </md-input-container>
+                                        </div>
+                                      </div>
+                                      <div layout="row">
+                                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <md-button type="submit" class="md-primary">Save</md-button>
+                                  </form>
+                                </md-content>
+                              </md-card-content>
+                            </md-card>
+                          </md-tab>
+                      </md-tabs>
+                    </md-content>
+                </md-card-content>
+            </md-card>
 
           </md-tab>
           <!-- ######################### TAB 4 ####################### -->
 
           <md-tab label="Research And Innovation">
-            <md-tabs>
-              <md-tab label = "Project/Model-Making/Poster-Develpoment Competition">
-              <!-- ######################### card 1 ####################### -->
+            <br>
             <md-card>
               <md-card-title>
                   <md-card-title-text>
-                      <span class="md-headline">Major Project(Apart from University Exam)</span>
-                  <md-card-title-text>
-              </md-card-title>
-
-              </md-card-content>
-          </md-card>
-
-          <!-- ######################### CARD 2 ######################## -->
-          <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Mini Project(Apart from University project)</span>
+                    <span class="md-headline">Project Competition</span>
                   </md-card-title-text>
               </md-card-title>
               <md-card-content>
-                <md-content class="md-padding" ng-controller="attendanceCtrl">
-                  <div layout="column">
-                    <form ng-submit="checkUserEntry(userData)" name="checkEntry" novalidate>
-                      <div layout="row">
-                        <md-input-container flex>
-                          <label>Class</label>
-                          <md-select ng-model="userData.class">
-                            <md-option ng-value="class.value" ng-repeat="class in classes" ng-required="true">{{class.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                        <md-input-container flex>
-                          <label>Semester</label>
-                          <md-select ng-model="userData.sem">
-                            <md-option ng-value="sem.value" ng-repeat="sem in semester" ng-required="true">{{sem.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                        <md-input-container flex>
-                          <label>Fortnight</label>
-                          <md-select ng-model="userData.fortnight">
-                            <md-option ng-value="result.value" ng-repeat="result in results" ng-required="true">{{result.name}}</md-option>
-                          </md-select>
-                        </md-input-container>
-                      </div>
-                      <md-button type="submit" class="md-primary">Submit</md-button>
-                    </form>
-                  </div>
-                  <div layout="column" ng-show="positiveServerResp">
-                    <form ng-submit="saveAttendanceData(attendanceData)" name="attendanceForm" novalidate>
-                      <div layout="row">
+                  <md-tabs>
+                      <md-tab label="Major Project">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <form ng-submit="saveFormResearchMajor(choices,researchData)" name="researchDataForm" novalidate>
+                            <h6 class="md-subhead">Major Project(Apart from University Project)</h6>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
 
-                      <md-input-container flex>
-                          <label>Attendance</label>
-                          <input ng-model="attendanceData.attendance" type="number" autocomplete="off" ng-required="true">
-                        </md-input-container>
+                            <div layout="column" ng-show="researchData.choice == 1">
+                              <div layout="column">
+                                <div  data-ng-repeat="choice in choices" >
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Name of Project</label>
+                                      <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Details of Project</label>
+                                      <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                </div>
+                                <div layout="row">
+                                  <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                  <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                </div>
+                              </div>
+                            </div>
+                            <md-button type="submit" class="md-primary">Save</md-button>
+                          </form>
+                        </md-content>
+                      </md-tab>
 
-                      </div>
-                      <md-button type="submit" class="md-primary">Submit</md-button>
-                    </form>
-                  </div>
-                  <div layout="column" ng-show="negativeServerResp">
-                    <h3 style="color:#F44336;"> You have already entered data.</h3>
-                  </div>
-                  <div ng-show="thankYou">
-                    <h3 style="color:#F44336;"> Thank You your data has been submitted.</h3>
-                  </div>
-                </md-content>
-              </md-card-content>
-          </md-card>
-          <!-- ############################ CARD 3 ############################ -->
-          <md-card>
-              <md-card-title>
-                  <md-card-title-text>
-                    <span class="md-headline">Technical Competition</span>
-                  </md-card-title-text>
-              </md-card-title>
-              <md-card-content>
-                <md-content class="md-padding" ng-controller= "univExamCtrl">
-                  <div layout="column">
-                    <form name="univExamForm" ng-submit="saveForm(choices)" novalidate>
-                        <div  data-ng-repeat="choice in choices">
-                          <div layout="row">
-                            <md-input-container flex>
-                              <label>Exam</label>
-                              <input ng-model="choice.name.exam" type="text" placeholder="FE / SE / TE / BE" autocomplete="off" ng-required="true">
-                            </md-input-container>
+                      <md-tab label="Minor Project">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <form ng-submit="saveFormResearchMini(choices,researchData)" name="researchDataForm" novalidate>
+                            <h6 class="md-subhead">Mini Project(Apart from University Project)</h6>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
 
-                            <md-input-container flex>
-                              <label>Month and Year</label>
-                              <input ng-model="choice.name.mAndy" type="text" placeholder="mm-yyyy" autocomplete="off" ng-required="true">
-                            </md-input-container>
+                            <div layout="column" ng-show="researchData.choice == 1">
+                              <div layout="column">
+                                <div  data-ng-repeat="choice in choices" >
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Name of Project</label>
+                                      <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Details of Project</label>
+                                      <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                </div>
+                                <div layout="row">
+
+                                  <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                  <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                </div>
+                              </div>
+                            </div>
+                            <md-button type="submit" class="md-primary">Save</md-button>
+                          </form>
+                        </md-content>
+                      </md-tab>
+                      <md-tab label="Technical Exhibition">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <form ng-submit="saveFormResearchTInt(choices,researchData)" name="researchDataForm" novalidate>
+                            <h6 class="md-subhead">Technical Exhibition / Competition (International / National Level) such as SAE, BAJA, SUPRA, ROBOTICS</h6>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
+
+                            <div layout="column" ng-show="researchData.choice == 1">
+                            <div layout="column">
+                              <div  data-ng-repeat="choice in choices" >
+                                <div layout="row">
+                                  <md-input-container flex>
+                                    <label>Name of Event</label>
+                                    <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                  </md-input-container>
+                                </div>
+                                <div layout="row">
+                                  <md-input-container flex>
+                                    <label>Details of Event</label>
+                                    <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                  </md-input-container>
+                                </div>
+                              </div>
+                              <div layout="row">
+
+                                <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                              </div>
+                            </div>
                           </div>
+                          <md-button type="submit" class="md-primary">Save</md-button>
+                        </form>
+                      </md-content>
+                      <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                        <form ng-submit="saveFormResearchTCol(choices,researchData)" name="researchDataForm" novalidate>
+                          <h6 class="md-subhead">Technical Exhibition (At University / College Level) such as Techligent, Spectrum</h6>
+                          <md-radio-group ng-model="researchData.choice">
+                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                          </md-radio-group>
+
+                          <div layout="column" ng-show="researchData.choice == 1">
+                            <div layout="column">
+                              <div  data-ng-repeat="choice in choices" >
+                                <div layout="row">
+                                  <md-input-container flex>
+                                    <label>Name of Event</label>
+                                    <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                  </md-input-container>
+                                </div>
+                                <div layout="row">
+                                  <md-input-container flex>
+                                    <label>Details of Event</label>
+                                    <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                  </md-input-container>
+                                </div>
+                              </div>
+                              <div layout="row">
+
+                                <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                              </div>
+                            </div>
+                          </div>
+                          <md-button type="submit" class="md-primary">Save</md-button>
+                      </form>
+                  </md-content>
+                      </md-tab>
+                  </md-tabs>
+              </md-card-content>
+            </md-card>
+            <br>
+            <br>
+
+            <md-card>
+              <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Patent / IPR  Generation</span>
+                  </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                  <form ng-submit="saveFormResearchIPR(choices,researchData)" name="researchDataForm" novalidate>
+                       <md-radio-group ng-model="researchData.choice">
+                            <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                            <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                        </md-radio-group>
+                        <div layout="column" ng-show="researchData.choice == 1">
+                        <div  data-ng-repeat="choice in choices" >
                           <div layout="row">
-                          <md-input-container flex>
-                            <label>Seat No.</label>
-                            <input ng-model="choice.name.seat" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Result</label>
-                            <md-select ng-model="choice.name.result">
-                              <md-option ng-value="result.value" ng-repeat="result in results" ng-required="true">{{result.name}}</md-option>
-                            </md-select>
-                          </md-input-container>
-                          <md-input-container ng-if="choice.name.result == 2" flex>
-                            <label>No. Of Subjects</label>
-                            <input ng-model="choice.name.failed" type="number" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                        </div>
-                        <div layout="row">
-
-                          <md-input-container flex>
-                            <label>Reasons for Success/ Failure (As per student's opinion)</label>
-                            <input ng-model="choice.name.reason" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-                          <md-input-container flex>
-                            <label>Suggestions given on performance/ remedial actions </label>
-                            <input ng-model="choice.name.suggestion" type="text" autocomplete="off" ng-required="true">
-                          </md-input-container>
-
-                        </div>
-                        <div layout="row">
+                            <md-input-container flex>
+                                <md-select ng-model="choice.name">
+                                  <md-option ng-value="class.value" placeholder="Select the type" ng-repeat="class in classes" ng-required="true">{{class.name}}</md-option>
+                                </md-select>
+                             </md-input-container>
+                             </div>
+                            <div layout="row">
                               <md-input-container flex>
-                                <label>Aggregate % till this exam</label>
-                                <input ng-model="choice.name.agg" type="number" autocomplete="off" ng-required="true">
+                                <label> Details about Patent</label>
+                                <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
                               </md-input-container>
+                            </div>
+                          </div>
+                        <div layout ="row">
+                          <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                          <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
                         </div>
-                        </div>
-                        <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
-                        <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
-                        <md-button type="submit">Save</md-button>
-                    </form>
-                  </div>
+                      </div>
+                      <md-button type="submit" class="md-primary">Save</md-button>
+                  </form>
                 </md-content>
-                </md-card-content>
+              </md-card-content>
             </md-card>
 
-            <!-- ############################ CARD 4 ############################ -->
+            <br>
+            <br>
 
-            <!-- ############################ CARD 4 ############################ -->
+            <md-card>
+              <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Research Publication</span>
+                  </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                  <md-tabs>
+                      <md-tab label="International Conference">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <h6 class="md-subhead">Presentation in International Conference or Journal</h6>
+                          <form ng-submit="saveFormResearchInternational(choices,researchData)" name="researchDataForm" novalidate>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
 
+                            <div layout="column" ng-show="researchData.choice == 1">
+                              <div layout="column">
+                                <div  data-ng-repeat="choice in choices" >
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Name of International Conference</label>
+                                      <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Details of Conference</label>
+                                      <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                </div>
+                                <div layout="row">
+                                  <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                  <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                </div>
+                              </div>
+                            </div>
+                            <md-button type="submit" class="md-primary">Save</md-button>
+                          </form>
+                        </md-content>
+                      </md-tab>
+                      <md-tab label="National Conference">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <form ng-submit="saveFormResearchNational(choices,researchData)" name="researchDataForm" novalidate>
+                            <h6 class="md-subhead">Presentation in National Conference or Journal</h6>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
+                            <div layout="column" ng-show="researchData.choice == 1">
+                              <div layout="column">
+                                <div  data-ng-repeat="choice in choices" >
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Name of National Conference</label>
+                                      <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Details of Conference</label>
+                                      <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                </div>
+                                <div layout="row">
+                                  <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                  <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                </div>
+                              </div>
+                            </div>
+                            <md-button type="submit" class="md-primary">Save</md-button>
+                          </form>
+                        </md-content>
+                      </md-tab>
 
+                      <md-tab label="State / University Level">
+                        <md-content class="md-padding" ng-controller= "researchDataCtrl">
+                          <form ng-submit="saveFormResearchState(choices,researchData)" name="researchDataForm" novalidate>
+                            <h6 class="md-subhead">Presentation in State / University Level</h6>
+                            <md-radio-group ng-model="researchData.choice">
+                              <md-radio-button value="1" class="md-primary">Yes</md-radio-button>
+                              <md-radio-button value="0" class="md-primary">No</md-radio-button>
+                            </md-radio-group>
 
+                            <div layout="column" ng-show="researchData.choice == 1">
+                              <div layout="column">
+                                <div  data-ng-repeat="choice in choices" >
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Name of State Conference</label>
+                                      <input ng-model="choice.name" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                  <div layout="row">
+                                    <md-input-container flex>
+                                      <label>Details of Conference</label>
+                                      <input ng-model="choice.details" type="text" autocomplete="off" ng-required="true">
+                                    </md-input-container>
+                                  </div>
+                                </div>
+                                <div layout="row">
+                                  <md-button class="addfields" ng-click="addNewChoice()">Add fields</md-button>
+                                  <md-button class="remove" ng-show="!$first" ng-click="removeChoice($index)">Remove</md-button>
+                                </div>
+                              </div>
+                            </div>
+                            <md-button type="submit" class="md-primary">Save</md-button>
+                          </form>
+                        </md-content>
+                      </md-tab>
+                  </md-tabs>
+              </md-card-content>
+            </md-card>
+          </md-tab>
 
         </md-tabs>
       </md-content>

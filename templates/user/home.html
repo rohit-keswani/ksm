@@ -6,11 +6,11 @@
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Prof. Rohan Purekar</span>
+          <span class="md-headline">Prof. Dr. J. S. Umale</span>
            <span class="md-subhead">Dean Academics | Admin</span>
            <span class="md-subhead">Computer Engineering Department</span>
-           <span class="md-subhead">rohan@gmail.com</span>
-           <span class="md-subhead">+91 9923393795</span>
+           <span class="md-subhead">drjsumale@gmail.com</span>
+           <span class="md-subhead">+91 9239123942</span>
         </md-card-title-text>
         <md-card-title-media>
             <div class="md-media-lg card-media">
@@ -288,6 +288,56 @@
                 </div>
                 <div flex="5" style="max-width: 5%;"></div>
               </div>
+            </md-tab>
+            <md-tab label="Assessment">
+              <md-content class="md-padding" ng-controller="assessmentCtrl">
+                <div layout="column" layout-gt-md="row">
+                  <div flex="5" style="max-width: 5%;"></div>
+                  <div flex="90">
+                    <div layout="row" style="margin-top:-45px;">
+                        <div flex="30">
+                          <h6 style="font-size:14px;">Academic Performance</h6>
+                        </div>
+                        <div flex="70" style="margin-top:-3px;">
+                          <h6 style="font-size:14px;" class="md-subhead">{{marks.academic}}</h6>
+                        </div>
+                    </div>
+                    <div layout="row" style="margin-top:-45px;">
+                        <div flex="30">
+                          <h6 style="font-size:14px;">Research and Innovation</h6>
+                        </div>
+                        <div flex="70" style="margin-top:-3px;">
+                          <h6 style="font-size:14px;" class="md-subhead">{{marks.research}}</h6>
+                        </div>
+                    </div>
+                    <div layout="row" style="margin-top:-45px;">
+                        <div flex="30">
+                          <h6 style="font-size:14px;">Self Development Data</h6>
+                        </div>
+                        <div flex="70" style="margin-top:-3px;">
+                          <h6 style="font-size:14px;" class="md-subhead">{{marks.selfDev}}</h6>
+                        </div>
+                    </div>
+                    <div layout="row" style="margin-top:-45px;">
+                        <div flex="30">
+                          <h6 style="font-size:14px;">Extra-curricular</h6>
+                        </div>
+                        <div flex="70" style="margin-top:-3px;">
+                          <h6 style="font-size:14px;" class="md-subhead">{{marks.Extracurriculars}}</h6>
+                        </div>
+                    </div>
+                    <div layout="row" style="margin-top:-45px;">
+                        <div flex="30">
+                          <h6 style="font-size:14px;">Total </h6>
+                        </div>
+                        <div flex="70" style="margin-top:-3px;">
+                          <h6 style="font-size:14px;" class="md-subhead">{{marks.academic + marks.research + marks.selfDev + marks.Extracurriculars}}</h6>
+                        </div>
+                    </div>
+                  </div>
+                  <div flex="5" style="max-width: 5%;"></div>
+                </div>
+              </md-content>
             </md-tab>
         </md-tabs>
       </md-card-content>

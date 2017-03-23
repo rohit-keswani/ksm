@@ -1,7 +1,7 @@
 <?php if(!isset($_SESSION))
     {
         session_start();
-    } 
+    }
 include_once('class.dbinfo.php');
 
 /**
@@ -79,6 +79,42 @@ class proctor {
       return $data;
     }
 
+    public function fetchAllAttendance(){
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010007 WHERE student_id = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
+    public function fetchAllUnit(){
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010005 WHERE student_id = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
+    public function fetchAllResearch(){
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010019 WHERE student_id = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
+    public function fetchAllSelfDev(){
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010018 WHERE student_id = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
+    public function fetchExtraCurricularData(){
+      $stmt = $this->pdo->prepare("SELECT * FROM PM010017 WHERE student_id = :student_id");
+      $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $data;
+    }
+
     public function checkEntry($table,$classId){
       $stmt = $this->pdo->prepare("SELECT prim_id,approved FROM ".$table." WHERE class_id = :class_id");
       $stmt->bindParam(":class_id",$classId,PDO::PARAM_STR);
@@ -116,6 +152,58 @@ class proctor {
         $_SESSION['fnight_count'] = $count;
         echo json_encode($count);
       }
+    }
+    public function saveResearchData($data,$types,$choice,$classID){
+      $type = $types['type'];
+      $subtype = $types['subtype'];
+      $choice = $choice['choice'];
+      foreach ($data as $key => $value) {
+        $stmt = $this->pdo->prepare("INSERT INTO PM010019 (student_id,class_id,research_type,research_sub_type,name,details,answer) VALUES (:student_id,:class_id,:research_type,:research_sub_type,:name,:details,:answer)");
+        $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":class_id",$classID,PDO::PARAM_STR);
+        $stmt->bindParam(":research_type",$type,PDO::PARAM_STR);
+        $stmt->bindParam(":research_sub_type",$subtype,PDO::PARAM_STR);
+        $stmt->bindParam(":name",$data[$key]['name'],PDO::PARAM_STR);
+        $stmt->bindParam(":details",$data[$key]['details'],PDO::PARAM_STR);
+        $stmt->bindParam(":answer",$choice,PDO::PARAM_STR);
+        $stmt->execute();
+
+      }
+      echo "";
+    }
+    public function saveExtraCurricularData($data,$types,$choice,$classID){
+      $type = $types['type'];
+      $subtype = $types['subtype'];
+      $choice = $choice['choice'];
+      foreach ($data as $key => $value) {
+        $stmt = $this->pdo->prepare("INSERT INTO PM010017 (student_id,class_id,activity_type,act_sub_type,name,details,answer) VALUES (:student_id,:class_id,:activity_type,:act_sub_type,:name,:details,:answer)");
+        $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":class_id",$classID,PDO::PARAM_STR);
+        $stmt->bindParam(":activity_type",$type,PDO::PARAM_STR);
+        $stmt->bindParam(":act_sub_type",$subtype,PDO::PARAM_STR);
+        $stmt->bindParam(":name",$data[$key]['name'],PDO::PARAM_STR);
+        $stmt->bindParam(":details",$data[$key]['details'],PDO::PARAM_STR);
+        $stmt->bindParam(":answer",$choice,PDO::PARAM_STR);
+        $stmt->execute();
+
+      }
+      echo "";
+    }
+    public function saveSelfDevData($data,$types,$classID){
+      $type = $types['type'];
+
+        $stmt = $this->pdo->prepare("INSERT INTO PM010018 (student_id,class_id,improve_type,name,details,duration,answer) VALUES (:student_id,:class_id,:improve_type,:name,:details,:duration,:answer)");
+        $stmt->bindParam(":student_id",$_SESSION['user_plexus_id'],PDO::PARAM_STR);
+        $stmt->bindParam(":class_id",$classID,PDO::PARAM_STR);
+        $stmt->bindParam(":improve_type",$type,PDO::PARAM_STR);
+        $stmt->bindParam(":name",$data['name'],PDO::PARAM_STR);
+        $stmt->bindParam(":details",$data['details'],PDO::PARAM_STR);
+        $stmt->bindParam(":duration",$data['duration'],PDO::PARAM_STR);
+        $stmt->bindParam(":answer",$data['choice'],PDO::PARAM_STR);
+        $stmt->execute();
+
+
+      echo "";
     }
 
     public function saveExtraEfforts($data,$classID){
@@ -166,10 +254,17 @@ class proctor {
         $stmt->execute();
       }
       else {
-        $stmt = $this->pdo->prepare("UPDATE PM010007 SET ".$_SESSION['fnight_column']." =:attendance WHERE student_id = :student_id AND class_id = :class");
+        if (!isset($data->attendancePercentage)){
+          $attendance = " ";
+        }
+        else{
+          $attendance = $data->attendancePercentage;
+        }
+        $stmt = $this->pdo->prepare("UPDATE PM010007 SET ".$_SESSION['fnight_column']." =:attendance AND attendance_percentage = :attendance_percentage WHERE student_id = :student_id AND class_id = :class");
         $stmt->bindParam(":student_id",$_SESSION['studentId'],PDO::PARAM_STR);
         $stmt->bindParam(":class",$_SESSION['classID'],PDO::PARAM_STR);
         $stmt->bindParam(":attendance",$data->attendance,PDO::PARAM_STR);
+        $stmt->bindParam(":attendance_percentage",$attendance,PDO::PARAM_STR);
         $stmt->execute();
       }
 
