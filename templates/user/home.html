@@ -289,6 +289,8 @@
                 <div flex="5" style="max-width: 5%;"></div>
               </div>
             </md-tab>
+
+            //$############################## 4 ###############################
             <md-tab label="Assessment">
               <md-content class="md-padding" ng-controller="assessmentCtrl">
                 <div layout="column" layout-gt-md="row">
@@ -339,7 +341,1268 @@
                 </div>
               </md-content>
             </md-tab>
-        </md-tabs>
+
+
+            //$############################## 5 ###############################
+            <md-tab label="Detailed Assessment">
+              <md-card>
+                  <md-card-title>
+                      <md-card-title-text>
+                          <span class="md-headline">F.E.</span>
+                      </md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
+                    <md-tabs>
+                        <md-tab label="Academic Performance">
+                          <md-content class="md-padding">
+                            <div layout="column" layout-gt-md="row">
+                              <div flex="5" style="max-width: 5%;"></div>
+                              <div flex="90">
+                                <p class="md-headline">1. Continuous Assessment</p>
+                                <div layout="row" style="margin-top:-30px;">
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">Attendance</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.attendance}}</h6>
+                                    </div>
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">Unit Test Performance</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.ut}}</h6>
+                                    </div>
+                                </div>
+                                <div layout="row" style="margin-top:-45px;">
+                                    <div flex="25">
+                                      <h6 style="font-size:13px;">Practical Performance</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                      <h6 style="font-size:13px;" class="md-subhead">{{user.practical}}</h6>
+                                    </div>
+                                  </div>
+                                  <br>
+                                <div layout="row" style="margin-top:-30px;">
+                                  <div flex="50">
+                                    <p class="md-headline">2. Endsem Assessment</p>
+                                  </div>
+                                  <div flex="50" style="margin-top:-3px;">
+                                    <h6 style="font-size:13px;" class="md-subhead">{{user.endsem}}</h6>
+                                  </div>
+                                </div>
+                                <p class="md-headline">3. Academic Achievements</p>
+                                <div layout="row" style="margin-top:-30px;">
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">University Rank Holder</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.urank}}</h6>
+                                    </div>
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">Year Topper</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.yearrank}}</h6>
+                                    </div>
+                                </div>
+                                <div layout="row" style="margin-top:-30px;">
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">Subject Topper</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.subjectrank}}</h6>
+                                    </div>
+                                    <div flex="25">
+                                        <h6 style="font-size:13px;">Distinction</h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                        <h6 style="font-size:13px;" class="md-subhead">{{user.distinction}}</h6>
+                                    </div>
+                                </div>
+                                <div layout="row" style="margin-top:-30px;">
+                                    <div flex="25">
+                                      <h6 style="font-size:13px;">First Class </h6>
+                                    </div>
+                                    <div flex="25" style="margin-top:-3px;">
+                                      <h6 style="font-size:13px;" class="md-subhead">{{user.fc}}</h6>
+                                    </div>
+                                </div>
+                              </div>
+                              <div flex="5" style="max-width: 5%;"></div>
+                            </div>
+                          </md-content>
+                        </md-tab>
+
+
+              <md-tab label="Research and Innovation">
+                <md-content class="md-padding">
+                  <div layout="column" layout-gt-md="row">
+                    <div flex="5" style="max-width: 5%;"></div>
+                    <div flex="90">
+                      <p class="md-headline">1. Project/ model making/ poster development/ competition </p><br>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Major Project(Apart from University Project)</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.majorproject}}</h6>
+                          </div>
+                      </div>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Mini Project(Apart from University Project)</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.miniproject}}</h6>
+                          </div>
+                      </div>
+                      <br>
+                      <div layout="row" style="margin-top:-45px;">
+                          <div flex="50">
+                            <h6 style="font-size:13px;">Technical Exhibition / Competition (International / National Level) such as SAE, BAJA, SUPRA, ROBOTICS</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                            <h6 style="font-size:13px;" class="md-subhead">{{user.techinternational}}</h6>
+                          </div>
+                        </div>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Technical Exhibition (At University / College Level) such as Techligent, Spectrum</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.techunivlevel}}</h6>
+                          </div>
+                      </div>
+                        <br>
+                      <div layout="row" style="margin-top:-30px;">
+                        <div flex="75">
+                          <p class="md-headline">2. Patent / IPR / Revenue Generation</p>
+                        </div>
+                        <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.patent}}</h6>
+                        </div>
+                      </div>
+                      <p class="md-headline">3. Research Publication</p>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Presentation in International Conference or Journal</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.international}}</h6>
+                          </div>
+                        </div>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Presentation in National Conference or Journal</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.national}}</h6>
+                          </div>
+                      </div>
+                      <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                              <h6 style="font-size:13px;">Presentation in State / University Level</h6>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.state}}</h6>
+                          </div>
+                      </div>
+                    </div>
+                    <div flex="5" style="max-width: 5%;"></div>
+                  </div>
+                </md-content>
+              </md-tab>
+
+
+
+              <md-tab label="Self-Development">
+                    <md-content class="md-padding">
+                      <div layout="column" layout-gt-md="row">
+                        <div flex="5" style="max-width: 5%;"></div>
+                        <div flex="90">
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">1. Communication Skill Development</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.comm}}</h6>
+                              </div>
+                          </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">2. Aptitude Training</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.aptitude}}</h6>
+                              </div>
+                          </div>
+                          <br>
+                          <div layout="row" style="margin-top:-45px;">
+                              <div flex="50">
+                                <h6 style="font-size:13px;">3.Technical Skill Development</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.techskill}}</h6>
+                              </div>
+                            </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">4. Preparation for Higher Study</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.higherstudy}}</h6>
+                              </div>
+                          </div>
+
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">5. Entrepreneurship Development Program</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.entrepreneurship}}</h6>
+                              </div>
+                            </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">6. Language Training</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.language}}</h6>
+                              </div>
+                          </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">7.Finishing School</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.finishingschool}}</h6>
+                              </div>
+                          </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">8.Spiritual and Holistic Development Program</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.spiritual}}</h6>
+                              </div>
+                          </div>
+                          <div layout="row" style="margin-top:-30px;">
+                              <div flex="50">
+                                  <h6 style="font-size:13px;">9. Internship or Summer Training</h6>
+                              </div>
+                              <div flex="50" style="margin-top:-3px;">
+                                  <h6 style="font-size:13px;" class="md-subhead">{{user.internship}}</h6>
+                              </div>
+                          </div>
+                        </div>
+                        <div flex="5" style="max-width: 5%;"></div>
+                      </div>
+
+                    </md-content>
+                </md-tab>
+
+
+
+              <md-tab label="Extracurricular Activities">
+                  <md-content class="md-padding">
+                    <div layout="column" layout-gt-md="row">
+                      <div flex="5" style="max-width: 5%;"></div>
+                      <div flex="90">
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="50">
+                                <h6 style="font-size:13px;">1. Performing Art</h6>
+                            </div>
+                            <div flex="50" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.art}}</h6>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="50">
+                                <h6 style="font-size:13px;">2. Visual and Litrary Art</h6>
+                            </div>
+                            <div flex="50" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.visualart}}</h6>
+                            </div>
+                        </div>
+                        <br>
+                        <div layout="row" style="margin-top:-45px;">
+                            <div flex="50">
+                              <h6 style="font-size:13px;">3.Sports</h6>
+                            </div>
+                            <div flex="50" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.sports}}</h6>
+                            </div>
+                          </div>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="50">
+                                <h6 style="font-size:13px;">4. Social Service</h6>
+                            </div>
+                            <div flex="50" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.socialservice}}</h6>
+                            </div>
+                        </div>
+
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="50">
+                                <h6 style="font-size:13px;">5. Leadership Development Activities</h6>
+                            </div>
+                            <div flex="50" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.leadership}}</h6>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </md-content>
+                </md-tab>
+
+          </md-tabs>
+        </md-card-content>
+      </md-card>
+
+      <md-card>
+          <md-card-title>
+              <md-card-title-text>
+                  <span class="md-headline">S.E.</span>
+              </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <md-tabs>
+                <md-tab label="Academic Performance">
+                  <md-content class="md-padding">
+                    <div layout="column" layout-gt-md="row">
+                      <div flex="5" style="max-width: 5%;"></div>
+                      <div flex="90">
+                        <p class="md-headline">1. Continuous Assessment</p>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="25">
+                                <h6 style="font-size:13px;">Attendance</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.attendance}}</h6>
+                            </div>
+                            <div flex="25">
+                                <h6 style="font-size:13px;">Unit Test Performance</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.ut}}</h6>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-top:-45px;">
+                            <div flex="25">
+                              <h6 style="font-size:13px;">Practical Performance</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.practical}}</h6>
+                            </div>
+                          </div>
+                          <br>
+                        <div layout="row" style="margin-top:-30px;">
+                          <div flex="50">
+                            <p class="md-headline">2. Endsem Assessment</p>
+                          </div>
+                          <div flex="50" style="margin-top:-3px;">
+                            <h6 style="font-size:13px;" class="md-subhead">{{user.endsem}}</h6>
+                          </div>
+                        </div>
+                        <p class="md-headline">3. Academic Achievements</p>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="25">
+                                <h6 style="font-size:13px;">University Rank Holder</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.urank}}</h6>
+                            </div>
+                            <div flex="25">
+                                <h6 style="font-size:13px;">Year Topper</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.yearrank}}</h6>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="25">
+                                <h6 style="font-size:13px;">Subject Topper</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.subjectrank}}</h6>
+                            </div>
+                            <div flex="25">
+                                <h6 style="font-size:13px;">Distinction</h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                                <h6 style="font-size:13px;" class="md-subhead">{{user.distinction}}</h6>
+                            </div>
+                        </div>
+                        <div layout="row" style="margin-top:-30px;">
+                            <div flex="25">
+                              <h6 style="font-size:13px;">First Class </h6>
+                            </div>
+                            <div flex="25" style="margin-top:-3px;">
+                              <h6 style="font-size:13px;" class="md-subhead">{{user.fc}}</h6>
+                            </div>
+                        </div>
+                      </div>
+                      <div flex="5" style="max-width: 5%;"></div>
+                    </div>
+                  </md-content>
+                </md-tab>
+
+
+      <md-tab label="Research and Innovation">
+        <md-content class="md-padding">
+          <div layout="column" layout-gt-md="row">
+            <div flex="5" style="max-width: 5%;"></div>
+            <div flex="90">
+              <p class="md-headline">1. Project/ model making/ poster development/ competition </p><br>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Major Project(Apart from University Project)</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.majorproject}}</h6>
+                  </div>
+              </div>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Mini Project(Apart from University Project)</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.miniproject}}</h6>
+                  </div>
+              </div>
+              <br>
+              <div layout="row" style="margin-top:-45px;">
+                  <div flex="50">
+                    <h6 style="font-size:13px;">Technical Exhibition / Competition (International / National Level) such as SAE, BAJA, SUPRA, ROBOTICS</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.techinternational}}</h6>
+                  </div>
+                </div>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Technical Exhibition (At University / College Level) such as Techligent, Spectrum</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.techunivlevel}}</h6>
+                  </div>
+              </div>
+                <br>
+              <div layout="row" style="margin-top:-30px;">
+                <div flex="75">
+                  <p class="md-headline">2. Patent / IPR / Revenue Generation</p>
+                </div>
+                <div flex="25" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.patent}}</h6>
+                </div>
+              </div>
+              <p class="md-headline">3. Research Publication</p>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Presentation in International Conference or Journal</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.international}}</h6>
+                  </div>
+                </div>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Presentation in National Conference or Journal</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.national}}</h6>
+                  </div>
+              </div>
+              <div layout="row" style="margin-top:-30px;">
+                  <div flex="50">
+                      <h6 style="font-size:13px;">Presentation in State / University Level</h6>
+                  </div>
+                  <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.state}}</h6>
+                  </div>
+              </div>
+            </div>
+            <div flex="5" style="max-width: 5%;"></div>
+          </div>
+        </md-content>
+      </md-tab>
+
+
+
+      <md-tab label="Self-Development">
+            <md-content class="md-padding">
+              <div layout="column" layout-gt-md="row">
+                <div flex="5" style="max-width: 5%;"></div>
+                <div flex="90">
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">1. Communication Skill Development</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.comm}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">2. Aptitude Training</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.aptitude}}</h6>
+                      </div>
+                  </div>
+                  <br>
+                  <div layout="row" style="margin-top:-45px;">
+                      <div flex="50">
+                        <h6 style="font-size:13px;">3.Technical Skill Development</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.techskill}}</h6>
+                      </div>
+                    </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">4. Preparation for Higher Study</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.higherstudy}}</h6>
+                      </div>
+                  </div>
+
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">5. Entrepreneurship Development Program</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.entrepreneurship}}</h6>
+                      </div>
+                    </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">6. Language Training</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.language}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">7.Finishing School</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.finishingschool}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">8.Spiritual and Holistic Development Program</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.spiritual}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="50">
+                          <h6 style="font-size:13px;">9. Internship or Summer Training</h6>
+                      </div>
+                      <div flex="50" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.internship}}</h6>
+                      </div>
+                  </div>
+                </div>
+                <div flex="5" style="max-width: 5%;"></div>
+              </div>
+
+            </md-content>
+        </md-tab>
+
+
+
+      <md-tab label="Extracurricular Activities">
+          <md-content class="md-padding">
+            <div layout="column" layout-gt-md="row">
+              <div flex="5" style="max-width: 5%;"></div>
+              <div flex="90">
+                <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                        <h6 style="font-size:13px;">1. Performing Art</h6>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.art}}</h6>
+                    </div>
+                </div>
+                <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                        <h6 style="font-size:13px;">2. Visual and Litrary Art</h6>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.visualart}}</h6>
+                    </div>
+                </div>
+                <br>
+                <div layout="row" style="margin-top:-45px;">
+                    <div flex="50">
+                      <h6 style="font-size:13px;">3.Sports</h6>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.sports}}</h6>
+                    </div>
+                  </div>
+                <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                        <h6 style="font-size:13px;">4. Social Service</h6>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.socialservice}}</h6>
+                    </div>
+                </div>
+
+                <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                        <h6 style="font-size:13px;">5. Leadership Development Activities</h6>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.leadership}}</h6>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </md-content>
+        </md-tab>
+
+  </md-tabs>
+</md-card-content>
+</md-card>
+
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">T.E.</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <md-tabs>
+          <md-tab label="Academic Performance">
+            <md-content class="md-padding">
+              <div layout="column" layout-gt-md="row">
+                <div flex="5" style="max-width: 5%;"></div>
+                <div flex="90">
+                  <p class="md-headline">1. Continuous Assessment</p>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Attendance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.attendance}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Unit Test Performance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.ut}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-45px;">
+                      <div flex="25">
+                        <h6 style="font-size:13px;">Practical Performance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.practical}}</h6>
+                      </div>
+                    </div>
+                    <br>
+                  <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                      <p class="md-headline">2. Endsem Assessment</p>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.endsem}}</h6>
+                    </div>
+                  </div>
+                  <p class="md-headline">3. Academic Achievements</p>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">University Rank Holder</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.urank}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Year Topper</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.yearrank}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Subject Topper</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.subjectrank}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Distinction</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.distinction}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                        <h6 style="font-size:13px;">First Class </h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.fc}}</h6>
+                      </div>
+                  </div>
+                </div>
+                <div flex="5" style="max-width: 5%;"></div>
+              </div>
+            </md-content>
+          </md-tab>
+
+
+<md-tab label="Research and Innovation">
+  <md-content class="md-padding">
+    <div layout="column" layout-gt-md="row">
+      <div flex="5" style="max-width: 5%;"></div>
+      <div flex="90">
+        <p class="md-headline">1. Project/ model making/ poster development/ competition </p><br>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Major Project(Apart from University Project)</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.majorproject}}</h6>
+            </div>
+        </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Mini Project(Apart from University Project)</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.miniproject}}</h6>
+            </div>
+        </div>
+        <br>
+        <div layout="row" style="margin-top:-45px;">
+            <div flex="50">
+              <h6 style="font-size:13px;">Technical Exhibition / Competition (International / National Level) such as SAE, BAJA, SUPRA, ROBOTICS</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+              <h6 style="font-size:13px;" class="md-subhead">{{user.techinternational}}</h6>
+            </div>
+          </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Technical Exhibition (At University / College Level) such as Techligent, Spectrum</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.techunivlevel}}</h6>
+            </div>
+        </div>
+          <br>
+        <div layout="row" style="margin-top:-30px;">
+          <div flex="75">
+            <p class="md-headline">2. Patent / IPR / Revenue Generation</p>
+          </div>
+          <div flex="25" style="margin-top:-3px;">
+            <h6 style="font-size:13px;" class="md-subhead">{{user.patent}}</h6>
+          </div>
+        </div>
+        <p class="md-headline">3. Research Publication</p>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in International Conference or Journal</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.international}}</h6>
+            </div>
+          </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in National Conference or Journal</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.national}}</h6>
+            </div>
+        </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in State / University Level</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.state}}</h6>
+            </div>
+        </div>
+      </div>
+      <div flex="5" style="max-width: 5%;"></div>
+    </div>
+  </md-content>
+</md-tab>
+
+
+
+<md-tab label="Self-Development">
+      <md-content class="md-padding">
+        <div layout="column" layout-gt-md="row">
+          <div flex="5" style="max-width: 5%;"></div>
+          <div flex="90">
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">1. Communication Skill Development</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.comm}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">2. Aptitude Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.aptitude}}</h6>
+                </div>
+            </div>
+            <br>
+            <div layout="row" style="margin-top:-45px;">
+                <div flex="50">
+                  <h6 style="font-size:13px;">3.Technical Skill Development</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.techskill}}</h6>
+                </div>
+              </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">4. Preparation for Higher Study</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.higherstudy}}</h6>
+                </div>
+            </div>
+
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">5. Entrepreneurship Development Program</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.entrepreneurship}}</h6>
+                </div>
+              </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">6. Language Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.language}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">7.Finishing School</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.finishingschool}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">8.Spiritual and Holistic Development Program</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.spiritual}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">9. Internship or Summer Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.internship}}</h6>
+                </div>
+            </div>
+          </div>
+          <div flex="5" style="max-width: 5%;"></div>
+        </div>
+
+      </md-content>
+  </md-tab>
+
+
+
+<md-tab label="Extracurricular Activities">
+    <md-content class="md-padding">
+      <div layout="column" layout-gt-md="row">
+        <div flex="5" style="max-width: 5%;"></div>
+        <div flex="90">
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">1. Performing Art</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.art}}</h6>
+              </div>
+          </div>
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">2. Visual and Litrary Art</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.visualart}}</h6>
+              </div>
+          </div>
+          <br>
+          <div layout="row" style="margin-top:-45px;">
+              <div flex="50">
+                <h6 style="font-size:13px;">3.Sports</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.sports}}</h6>
+              </div>
+            </div>
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">4. Social Service</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.socialservice}}</h6>
+              </div>
+          </div>
+
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">5. Leadership Development Activities</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.leadership}}</h6>
+              </div>
+            </div>
+        </div>
+    </div>
+  </md-content>
+  </md-tab>
+
+</md-tabs>
+</md-card-content>
+</md-card>
+
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">B.E.</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <md-tabs>
+          <md-tab label="Academic Performance">
+            <md-content class="md-padding">
+              <div layout="column" layout-gt-md="row">
+                <div flex="5" style="max-width: 5%;"></div>
+                <div flex="90">
+                  <p class="md-headline">1. Continuous Assessment</p>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Attendance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.attendance}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Unit Test Performance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.ut}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-45px;">
+                      <div flex="25">
+                        <h6 style="font-size:13px;">Practical Performance</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.practical}}</h6>
+                      </div>
+                    </div>
+                    <br>
+                  <div layout="row" style="margin-top:-30px;">
+                    <div flex="50">
+                      <p class="md-headline">2. Endsem Assessment</p>
+                    </div>
+                    <div flex="50" style="margin-top:-3px;">
+                      <h6 style="font-size:13px;" class="md-subhead">{{user.endsem}}</h6>
+                    </div>
+                  </div>
+                  <p class="md-headline">3. Academic Achievements</p>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">University Rank Holder</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.urank}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Year Topper</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.yearrank}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Subject Topper</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.subjectrank}}</h6>
+                      </div>
+                      <div flex="25">
+                          <h6 style="font-size:13px;">Distinction</h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                          <h6 style="font-size:13px;" class="md-subhead">{{user.distinction}}</h6>
+                      </div>
+                  </div>
+                  <div layout="row" style="margin-top:-30px;">
+                      <div flex="25">
+                        <h6 style="font-size:13px;">First Class </h6>
+                      </div>
+                      <div flex="25" style="margin-top:-3px;">
+                        <h6 style="font-size:13px;" class="md-subhead">{{user.fc}}</h6>
+                      </div>
+                  </div>
+                </div>
+                <div flex="5" style="max-width: 5%;"></div>
+              </div>
+            </md-content>
+          </md-tab>
+
+
+<md-tab label="Research and Innovation">
+  <md-content class="md-padding">
+    <div layout="column" layout-gt-md="row">
+      <div flex="5" style="max-width: 5%;"></div>
+      <div flex="90">
+        <p class="md-headline">1. Project/ model making/ poster development/ competition </p><br>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Major Project(Apart from University Project)</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.majorproject}}</h6>
+            </div>
+        </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Mini Project(Apart from University Project)</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.miniproject}}</h6>
+            </div>
+        </div>
+        <br>
+        <div layout="row" style="margin-top:-45px;">
+            <div flex="50">
+              <h6 style="font-size:13px;">Technical Exhibition / Competition (International / National Level) such as SAE, BAJA, SUPRA, ROBOTICS</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+              <h6 style="font-size:13px;" class="md-subhead">{{user.techinternational}}</h6>
+            </div>
+          </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Technical Exhibition (At University / College Level) such as Techligent, Spectrum</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.techunivlevel}}</h6>
+            </div>
+        </div>
+          <br>
+        <div layout="row" style="margin-top:-30px;">
+          <div flex="75">
+            <p class="md-headline">2. Patent / IPR / Revenue Generation</p>
+          </div>
+          <div flex="25" style="margin-top:-3px;">
+            <h6 style="font-size:13px;" class="md-subhead">{{user.patent}}</h6>
+          </div>
+        </div>
+        <p class="md-headline">3. Research Publication</p>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in International Conference or Journal</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.international}}</h6>
+            </div>
+          </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in National Conference or Journal</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.national}}</h6>
+            </div>
+        </div>
+        <div layout="row" style="margin-top:-30px;">
+            <div flex="50">
+                <h6 style="font-size:13px;">Presentation in State / University Level</h6>
+            </div>
+            <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.state}}</h6>
+            </div>
+        </div>
+      </div>
+      <div flex="5" style="max-width: 5%;"></div>
+    </div>
+  </md-content>
+</md-tab>
+
+
+
+<md-tab label="Self-Development">
+      <md-content class="md-padding">
+        <div layout="column" layout-gt-md="row">
+          <div flex="5" style="max-width: 5%;"></div>
+          <div flex="90">
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">1. Communication Skill Development</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.comm}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">2. Aptitude Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.aptitude}}</h6>
+                </div>
+            </div>
+            <br>
+            <div layout="row" style="margin-top:-45px;">
+                <div flex="50">
+                  <h6 style="font-size:13px;">3.Technical Skill Development</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.techskill}}</h6>
+                </div>
+              </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">4. Preparation for Higher Study</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.higherstudy}}</h6>
+                </div>
+            </div>
+
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">5. Entrepreneurship Development Program</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.entrepreneurship}}</h6>
+                </div>
+              </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">6. Language Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.language}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">7.Finishing School</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.finishingschool}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">8.Spiritual and Holistic Development Program</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.spiritual}}</h6>
+                </div>
+            </div>
+            <div layout="row" style="margin-top:-30px;">
+                <div flex="50">
+                    <h6 style="font-size:13px;">9. Internship or Summer Training</h6>
+                </div>
+                <div flex="50" style="margin-top:-3px;">
+                    <h6 style="font-size:13px;" class="md-subhead">{{user.internship}}</h6>
+                </div>
+            </div>
+          </div>
+          <div flex="5" style="max-width: 5%;"></div>
+        </div>
+
+      </md-content>
+  </md-tab>
+
+
+
+<md-tab label="Extracurricular Activities">
+    <md-content class="md-padding">
+      <div layout="column" layout-gt-md="row">
+        <div flex="5" style="max-width: 5%;"></div>
+        <div flex="90">
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">1. Performing Art</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.art}}</h6>
+              </div>
+          </div>
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">2. Visual and Litrary Art</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.visualart}}</h6>
+              </div>
+          </div>
+          <br>
+          <div layout="row" style="margin-top:-45px;">
+              <div flex="50">
+                <h6 style="font-size:13px;">3.Sports</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                <h6 style="font-size:13px;" class="md-subhead">{{user.sports}}</h6>
+              </div>
+            </div>
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">4. Social Service</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.socialservice}}</h6>
+              </div>
+          </div>
+
+          <div layout="row" style="margin-top:-30px;">
+              <div flex="50">
+                  <h6 style="font-size:13px;">5. Leadership Development Activities</h6>
+              </div>
+              <div flex="50" style="margin-top:-3px;">
+                  <h6 style="font-size:13px;" class="md-subhead">{{user.leadership}}</h6>
+              </div>
+            </div>
+        </div>
+    </div>
+  </md-content>
+  </md-tab>
+
+</md-tabs>
+</md-card-content>
+</md-card>
+
+    </md-tab>
+    </md-tabs>
       </md-card-content>
     </md-card>
   </div>
